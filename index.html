@@ -120,10 +120,7 @@
   .contact-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;flex-shrink:0}
   .contact-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#5a5040;margin-bottom:4px}
   .contact-val{font-size:13px;color:#c8bfa0;line-height:1.6}
-  .map-placeholder{background:#161410;border:1px solid rgba(201,168,76,0.15);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:border-color .2s}
-  .map-placeholder:hover{border-color:rgba(201,168,76,0.35)}
-  .map-icon{font-size:32px;color:rgba(201,168,76,0.4)}
-  .map-text{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#4a3a20}
+  .map-frame{border:1px solid rgba(201,168,76,0.2);aspect-ratio:4/3;width:100%;display:block;filter:grayscale(30%) contrast(1.05)}
   .contact-actions{display:flex;gap:8px;margin-top:24px}
   .action-btn{flex:1;background:transparent;border:1px solid rgba(201,168,76,0.25);color:#8a7a60;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;padding:10px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
   .action-btn:hover{border-color:var(--gold);color:var(--gold)}
@@ -421,10 +418,14 @@
         <button class="action-btn" onclick="window.open('https://maps.google.com/?q=Mirka+Sandica+1+Belgrade+Serbia')">🧭 <span data-i18n="contact.directions">Directions</span></button>
       </div>
     </div>
-    <div class="map-placeholder" onclick="window.open('https://maps.google.com/?q=Mirka+Sandica+1+Belgrade+Serbia')">
-      <div class="map-icon">🗺️</div>
-      <div class="map-text" data-i18n="contact.map">View on Google Maps</div>
-    </div>
+    <iframe
+      class="map-frame"
+      src="https://maps.google.com/maps?q=Mirka+Sandića+1,Beograd,Serbia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="LaRoc location — Mirka Sandića 1, Belgrade">
+    </iframe>
   </div>
 </section>
 
