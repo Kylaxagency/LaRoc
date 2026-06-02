@@ -1,6 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaRoc Beograd — Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
   *{box-sizing:border-box;margin:0;padding:0}
   :root{--gold:#C9A84C;--black:#111;--dark:#1a1a1a;--burg:#7A1F1F;--white:#fff;--gray:#888}
   body,html{font-family:'Inter',sans-serif;background:#0d0d0d;color:#e8e0d0}
@@ -9,12 +15,21 @@
   section{width:100%;overflow:hidden}
 
   /* NAV */
-  nav{background:rgba(13,13,13,0.97);border-bottom:1px solid rgba(201,168,76,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);letter-spacing:2px}
+  nav{background:rgba(13,13,13,0.97);border-bottom:1px solid rgba(201,168,76,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:12px}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);letter-spacing:2px;flex-shrink:0}
   .nav-links{display:flex;gap:20px;list-style:none}
   .nav-links a{color:#c8bfa0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:color .2s}
   .nav-links a:hover{color:var(--gold)}
-  .nav-cta{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:9px 18px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif}
+  .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .nav-cta{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:9px 18px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif;transition:opacity .2s}
+  .nav-cta:hover{opacity:.85}
+
+  /* LANGUAGE TOGGLE */
+  .lang-toggle{display:flex;align-items:center;border:1px solid rgba(201,168,76,0.4);overflow:hidden;flex-shrink:0}
+  .lang-btn{background:transparent;color:#6a5a40;font-size:10px;letter-spacing:1.5px;font-weight:500;font-family:'Inter',sans-serif;border:none;padding:7px 11px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+  .lang-btn.active{background:var(--gold);color:#111}
+  .lang-btn:not(.active):hover{color:var(--gold)}
+  .lang-sep{color:rgba(201,168,76,0.3);font-size:10px;pointer-events:none}
 
   /* HERO */
   .hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1008 50%,#0d0d0d 100%);min-height:480px;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 28px;position:relative;border-bottom:1px solid rgba(201,168,76,0.15)}
@@ -102,12 +117,12 @@
   .contact-inner{max-width:840px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px}
   .contact h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#f0e8d0;margin-bottom:24px}
   .contact-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
-  .contact-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0}
+  .contact-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;flex-shrink:0}
   .contact-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#5a5040;margin-bottom:4px}
   .contact-val{font-size:13px;color:#c8bfa0;line-height:1.6}
   .map-placeholder{background:#161410;border:1px solid rgba(201,168,76,0.15);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:border-color .2s}
   .map-placeholder:hover{border-color:rgba(201,168,76,0.35)}
-  .map-icon{font-size:28px;color:rgba(201,168,76,0.3)}
+  .map-icon{font-size:32px;color:rgba(201,168,76,0.4)}
   .map-text{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#4a3a20}
   .contact-actions{display:flex;gap:8px;margin-top:24px}
   .action-btn{flex:1;background:transparent;border:1px solid rgba(201,168,76,0.25);color:#8a7a60;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;padding:10px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -123,6 +138,9 @@
   .menu-section{display:none}
   .menu-section.visible{display:grid}
 
+  /* SR-ONLY */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
   @media(max-width:600px){
     .about-inner,.contact-inner{grid-template-columns:1fr}
     .menu-grid,.reviews-grid{grid-template-columns:1fr}
@@ -132,240 +150,760 @@
     .res-btn{grid-column:1}
   }
 </style>
-
-<h2 class="sr-only">LaRoc Beograd — restaurant website preview</h2>
+</head>
+<body>
 
 <nav>
   <div class="nav-logo">LA ROC</div>
   <ul class="nav-links">
-    <li><a href="#">About</a></li>
-    <li><a href="#">Menu</a></li>
-    <li><a href="#">Gallery</a></li>
-    <li><a href="#">Reviews</a></li>
-    <li><a href="#">Contact</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
+    <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+    <li><a href="#res" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <button class="nav-cta">Reserve</button>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language selector">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')" aria-pressed="true">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-sr" onclick="setLang('sr')" aria-pressed="false">SR</button>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('res').scrollIntoView({behavior:'smooth'})" data-i18n="nav.reserve">Reserve</button>
+  </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div>
-    <div class="hero-badge">Belgrade · Est. 2018</div>
-    <h1 class="serif">Where Great Food Becomes <em>an Experience</em></h1>
-    <p>Breakfast, premium grill, artisan pizza, fresh pasta, and Serbian specialties in the heart of Belgrade.</p>
+    <div class="hero-badge" data-i18n="hero.badge">Belgrade · Est. 2018</div>
+    <h1 class="serif" data-i18n-html="hero.h1">Where Great Food Becomes <em>an Experience</em></h1>
+    <p data-i18n="hero.sub">Breakfast, premium grill, artisan pizza, fresh pasta, and Serbian specialties in the heart of Belgrade.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('res').scrollIntoView({behavior:'smooth'})">Book a Table</button>
-      <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
-      <button class="btn-outline">Order Online</button>
+      <button class="btn-primary" onclick="document.getElementById('res').scrollIntoView({behavior:'smooth'})" data-i18n="hero.btn1">Book a Table</button>
+      <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" data-i18n="hero.btn2">View Menu</button>
+      <button class="btn-outline" data-i18n="hero.btn3">Order Online</button>
     </div>
-    <div class="hero-divider"><span>Mon – Sun · 08:00 – 22:00</span></div>
+    <div class="hero-divider"><span data-i18n="hero.hours">Mon – Sun · 08:00 – 22:00</span></div>
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features">
   <div class="features-grid">
-    <div class="feat-card"><span class="feat-icon">🍳</span><div class="feat-title">Breakfast</div><div class="feat-sub">Served daily</div></div>
-    <div class="feat-card"><span class="feat-icon">🔥</span><div class="feat-title">Premium Grill</div><div class="feat-sub">Selected cuts</div></div>
-    <div class="feat-card"><span class="feat-icon">🍕</span><div class="feat-title">Artisan Pizza</div><div class="feat-sub">Stone-baked</div></div>
-    <div class="feat-card"><span class="feat-icon">🍔</span><div class="feat-title">Gourmet Burgers</div><div class="feat-sub">100% beef</div></div>
-    <div class="feat-card"><span class="feat-icon">🍝</span><div class="feat-title">Fresh Pasta</div><div class="feat-sub">Made daily</div></div>
-    <div class="feat-card"><span class="feat-icon">🍷</span><div class="feat-title">Relaxed Dining</div><div class="feat-sub">Warm atmosphere</div></div>
+    <div class="feat-card"><span class="feat-icon">🍳</span><div class="feat-title" data-i18n="feat.breakfast.title">Breakfast</div><div class="feat-sub" data-i18n="feat.breakfast.sub">Served daily</div></div>
+    <div class="feat-card"><span class="feat-icon">🔥</span><div class="feat-title" data-i18n="feat.grill.title">Premium Grill</div><div class="feat-sub" data-i18n="feat.grill.sub">Selected cuts</div></div>
+    <div class="feat-card"><span class="feat-icon">🍕</span><div class="feat-title" data-i18n="feat.pizza.title">Artisan Pizza</div><div class="feat-sub" data-i18n="feat.pizza.sub">Stone-baked</div></div>
+    <div class="feat-card"><span class="feat-icon">🍔</span><div class="feat-title" data-i18n="feat.burgers.title">Gourmet Burgers</div><div class="feat-sub" data-i18n="feat.burgers.sub">100% beef</div></div>
+    <div class="feat-card"><span class="feat-icon">🍝</span><div class="feat-title" data-i18n="feat.pasta.title">Fresh Pasta</div><div class="feat-sub" data-i18n="feat.pasta.sub">Made daily</div></div>
+    <div class="feat-card"><span class="feat-icon">🍷</span><div class="feat-title" data-i18n="feat.dining.title">Relaxed Dining</div><div class="feat-sub" data-i18n="feat.dining.sub">Warm atmosphere</div></div>
   </div>
 </section>
 
-<section class="about">
+<!-- ABOUT -->
+<section class="about" id="about">
   <div class="about-inner">
     <div class="about-img">
       <div class="photo-placeholder">🍽</div>
-      <div class="photo-label">Restaurant Photography</div>
+      <div class="photo-label" data-i18n="about.photo">Restaurant Photography</div>
     </div>
     <div>
-      <span class="about-label">Our Story</span>
-      <h2 class="serif">A Passion for Food, A Love for Belgrade</h2>
-      <p>LaRoc was born from a simple belief — that every meal should feel like a celebration. We blend Serbian warmth with Mediterranean flavors and international culinary craft.</p>
-      <p>Every dish is prepared fresh each day, using quality ingredients sourced from trusted local producers and artisan suppliers.</p>
+      <span class="about-label" data-i18n="about.label">Our Story</span>
+      <h2 class="serif" data-i18n="about.h2">A Passion for Food, A Love for Belgrade</h2>
+      <p data-i18n="about.p1">LaRoc was born from a simple belief — that every meal should feel like a celebration. We blend Serbian warmth with Mediterranean flavors and international culinary craft.</p>
+      <p data-i18n="about.p2">Every dish is prepared fresh each day, using quality ingredients sourced from trusted local producers and artisan suppliers.</p>
       <div class="about-stats">
-        <div><span class="stat-n gold">8+</span><span class="stat-l">Years Serving</span></div>
-        <div><span class="stat-n gold">50+</span><span class="stat-l">Menu Items</span></div>
-        <div><span class="stat-n gold">★4.8</span><span class="stat-l">Guest Rating</span></div>
+        <div><span class="stat-n gold">8+</span><span class="stat-l" data-i18n="about.stat1">Years Serving</span></div>
+        <div><span class="stat-n gold">50+</span><span class="stat-l" data-i18n="about.stat2">Menu Items</span></div>
+        <div><span class="stat-n gold">★4.8</span><span class="stat-l" data-i18n="about.stat3">Guest Rating</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MENU -->
 <section class="menu-sec" id="menu">
   <div class="sec-header">
-    <span class="sec-label">Explore</span>
-    <h2 class="serif">Our Menu</h2>
+    <span class="sec-label" data-i18n="menu.label">Explore</span>
+    <h2 class="serif" data-i18n="menu.h2">Our Menu</h2>
   </div>
   <div class="menu-cats" id="cats">
-    <button class="cat-btn active" data-cat="breakfast">Breakfast</button>
-    <button class="cat-btn" data-cat="sandwiches">Sandwiches</button>
-    <button class="cat-btn" data-cat="appetizers">Appetizers</button>
-    <button class="cat-btn" data-cat="pasta">Pasta</button>
-    <button class="cat-btn" data-cat="mains">Mains</button>
-    <button class="cat-btn" data-cat="pizza">Pizza</button>
-    <button class="cat-btn" data-cat="burgers">Burgers</button>
-    <button class="cat-btn" data-cat="desserts">Desserts</button>
+    <button class="cat-btn active" data-cat="breakfast" data-i18n="menu.cat.breakfast">Breakfast</button>
+    <button class="cat-btn" data-cat="sandwiches" data-i18n="menu.cat.sandwiches">Sandwiches</button>
+    <button class="cat-btn" data-cat="appetizers" data-i18n="menu.cat.appetizers">Appetizers</button>
+    <button class="cat-btn" data-cat="pasta" data-i18n="menu.cat.pasta">Pasta</button>
+    <button class="cat-btn" data-cat="mains" data-i18n="menu.cat.mains">Mains</button>
+    <button class="cat-btn" data-cat="pizza" data-i18n="menu.cat.pizza">Pizza</button>
+    <button class="cat-btn" data-cat="burgers" data-i18n="menu.cat.burgers">Burgers</button>
+    <button class="cat-btn" data-cat="desserts" data-i18n="menu.cat.desserts">Desserts</button>
   </div>
 
+  <!-- BREAKFAST -->
   <div id="breakfast" class="menu-section menu-grid visible">
-    <div class="menu-item"><div><div class="menu-name">LaRoc Breakfast</div><div class="menu-desc">3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes</div></div><div class="menu-price">850</div></div>
-    <div class="menu-item"><div><div class="menu-name">Italian Toast</div><div class="menu-desc">French fries, sour cream, ham, cheese, peppers</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Greek Scrambled Eggs</div><div class="menu-desc">Pita, scrambled eggs, tzatziki, grilled bacon, tomatoes</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Valjevo Breakfast</div><div class="menu-desc">Cracklings, fresh cream, ajvar, crispy bacon</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name">Avocado Toast</div><div class="menu-desc">Toasted bread, guacamole, cherry tomatoes, arugula</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Breakfast for Two</div><div class="menu-desc">4 eggs, sausages, bacon, cream, ajvar, tomatoes</div></div><div class="menu-price">1,590</div></div>
-    <div class="menu-item"><div><div class="menu-name">Sweet Doughnuts</div><div class="menu-desc">Doughnuts with Nutella</div></div><div class="menu-price">690</div></div>
-    <div class="menu-item"><div><div class="menu-name">Protein Breakfast</div><div class="menu-desc">5 egg white omelet with peppers and mushrooms</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b1.name">LaRoc Breakfast</div><div class="menu-desc" data-i18n="m.b1.desc">3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes</div></div><div class="menu-price">850</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b2.name">Italian Toast</div><div class="menu-desc" data-i18n="m.b2.desc">French fries, sour cream, ham, cheese, peppers</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b3.name">Greek Scrambled Eggs</div><div class="menu-desc" data-i18n="m.b3.desc">Pita, scrambled eggs, tzatziki, grilled bacon, tomatoes</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b4.name">Valjevo Breakfast</div><div class="menu-desc" data-i18n="m.b4.desc">Cracklings, fresh cream, ajvar, crispy bacon</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b5.name">Avocado Toast</div><div class="menu-desc" data-i18n="m.b5.desc">Toasted bread, guacamole, cherry tomatoes, arugula</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b6.name">Breakfast for Two</div><div class="menu-desc" data-i18n="m.b6.desc">4 eggs, sausages, bacon, cream, ajvar, tomatoes</div></div><div class="menu-price">1,590</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b7.name">Sweet Doughnuts</div><div class="menu-desc" data-i18n="m.b7.desc">Doughnuts with Nutella</div></div><div class="menu-price">690</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b8.name">Protein Breakfast</div><div class="menu-desc" data-i18n="m.b8.desc">5 egg white omelet with peppers and mushrooms</div></div><div class="menu-price">790</div></div>
   </div>
 
+  <!-- SANDWICHES -->
   <div id="sandwiches" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Classic Sandwich</div><div class="menu-desc">Homemade ciabatta, sour cream, ham, cheese, tomatoes</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Curry Chicken Sandwich</div><div class="menu-desc">Ciabatta, mango curry sauce, grilled chicken, lettuce</div></div><div class="menu-price">800</div></div>
-    <div class="menu-item"><div><div class="menu-name">Pesto Sandwich</div><div class="menu-desc">Ciabatta, pesto, cured prosciutto, fresh mozzarella</div></div><div class="menu-price">950</div></div>
-    <div class="menu-item"><div><div class="menu-name">Spicy Sandwich</div><div class="menu-desc">Ciabatta, mayonnaise, homemade kulen sausage, cheese</div></div><div class="menu-price">920</div></div>
-    <div class="menu-item"><div><div class="menu-name">Zlatibor Sandwich</div><div class="menu-desc">Ciabatta, young cream cheese, prosciutto</div></div><div class="menu-price">1,030</div></div>
-    <div class="menu-item"><div><div class="menu-name">Tel Aviv Sandwich</div><div class="menu-desc">Ciabatta, hummus, grilled vegetables</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s1.name">Classic Sandwich</div><div class="menu-desc" data-i18n="m.s1.desc">Homemade ciabatta, sour cream, ham, cheese, tomatoes</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s2.name">Curry Chicken Sandwich</div><div class="menu-desc" data-i18n="m.s2.desc">Ciabatta, mango curry sauce, grilled chicken, lettuce</div></div><div class="menu-price">800</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s3.name">Pesto Sandwich</div><div class="menu-desc" data-i18n="m.s3.desc">Ciabatta, pesto, cured prosciutto, fresh mozzarella</div></div><div class="menu-price">950</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s4.name">Spicy Sandwich</div><div class="menu-desc" data-i18n="m.s4.desc">Ciabatta, mayonnaise, homemade kulen sausage, cheese</div></div><div class="menu-price">920</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s5.name">Zlatibor Sandwich</div><div class="menu-desc" data-i18n="m.s5.desc">Ciabatta, young cream cheese, prosciutto</div></div><div class="menu-price">1,030</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s6.name">Tel Aviv Sandwich</div><div class="menu-desc" data-i18n="m.s6.desc">Ciabatta, hummus, grilled vegetables</div></div><div class="menu-price">750</div></div>
   </div>
 
+  <!-- APPETIZERS -->
   <div id="appetizers" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">LaRoc Platter</div><div class="menu-desc">Prosciutto, chorizo, gorgonzola, smoked cheese, olives</div></div><div class="menu-price">2,180</div></div>
-    <div class="menu-item"><div><div class="menu-name">Fried Mix</div><div class="menu-desc">Mozzarella sticks, chicken sticks, onion rings, fries</div></div><div class="menu-price">1,350</div></div>
-    <div class="menu-item"><div><div class="menu-name">Tomato Bruschetta</div><div class="menu-desc">Fresh tomatoes on toasted bread</div></div><div class="menu-price">690</div></div>
-    <div class="menu-item"><div><div class="menu-name">Greek Bouyourdi</div><div class="menu-desc">Feta cheese, olive oil, tomatoes, oregano</div></div><div class="menu-price">1,020</div></div>
-    <div class="menu-item"><div><div class="menu-name">Spring Rolls</div><div class="menu-desc">Vegetable spring rolls with sweet chili sauce</div></div><div class="menu-price">680</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a1.name">LaRoc Platter</div><div class="menu-desc" data-i18n="m.a1.desc">Prosciutto, chorizo, gorgonzola, smoked cheese, olives</div></div><div class="menu-price">2,180</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a2.name">Fried Mix</div><div class="menu-desc" data-i18n="m.a2.desc">Mozzarella sticks, chicken sticks, onion rings, fries</div></div><div class="menu-price">1,350</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a3.name">Tomato Bruschetta</div><div class="menu-desc" data-i18n="m.a3.desc">Fresh tomatoes on toasted bread</div></div><div class="menu-price">690</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a4.name">Greek Bouyourdi</div><div class="menu-desc" data-i18n="m.a4.desc">Feta cheese, olive oil, tomatoes, oregano</div></div><div class="menu-price">1,020</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a5.name">Spring Rolls</div><div class="menu-desc" data-i18n="m.a5.desc">Vegetable spring rolls with sweet chili sauce</div></div><div class="menu-price">680</div></div>
   </div>
 
+  <!-- PASTA -->
   <div id="pasta" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Penne Arrabbiata</div><div class="menu-desc">Classic spicy tomato sauce</div></div><div class="menu-price">1,140</div></div>
-    <div class="menu-item"><div><div class="menu-name">Four Cheese Chicken Penne</div><div class="menu-desc">Creamy four cheese sauce with grilled chicken</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name">Tagliatelle Bolognese</div><div class="menu-desc">Classic slow-cooked meat ragù</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name">Prosciutto Parmigiano Tagliatelle</div><div class="menu-desc">Prosciutto, parmigiano, cream sauce</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name">Steak Tagliatelle</div><div class="menu-desc">Premium steak strips with fresh pasta</div></div><div class="menu-price">1,990</div></div>
-    <div class="menu-item"><div><div class="menu-name">Shrimp Tagliatelle</div><div class="menu-desc">Fresh shrimp in Mediterranean sauce</div></div><div class="menu-price">1,890</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p1.name">Penne Arrabbiata</div><div class="menu-desc" data-i18n="m.p1.desc">Classic spicy tomato sauce</div></div><div class="menu-price">1,140</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p2.name">Four Cheese Chicken Penne</div><div class="menu-desc" data-i18n="m.p2.desc">Creamy four cheese sauce with grilled chicken</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p3.name">Tagliatelle Bolognese</div><div class="menu-desc" data-i18n="m.p3.desc">Classic slow-cooked meat ragù</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p4.name">Prosciutto Parmigiano Tagliatelle</div><div class="menu-desc" data-i18n="m.p4.desc">Prosciutto, parmigiano, cream sauce</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p5.name">Steak Tagliatelle</div><div class="menu-desc" data-i18n="m.p5.desc">Premium steak strips with fresh pasta</div></div><div class="menu-price">1,990</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p6.name">Shrimp Tagliatelle</div><div class="menu-desc" data-i18n="m.p6.desc">Fresh shrimp in Mediterranean sauce</div></div><div class="menu-price">1,890</div></div>
   </div>
 
+  <!-- MAINS -->
   <div id="mains" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Priboj Kebabs</div><div class="menu-desc">Traditional Serbian-style kebabs</div></div><div class="menu-price">1,450</div></div>
-    <div class="menu-item"><div><div class="menu-name">BBQ Ribs</div><div class="menu-desc">Slow-cooked ribs with BBQ glaze</div></div><div class="menu-price">1,650</div></div>
-    <div class="menu-item"><div><div class="menu-name">Veal Schnitzel</div><div class="menu-desc">Breaded veal with seasonal sides</div></div><div class="menu-price">1,790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Mediterranean Chicken</div><div class="menu-desc">Herbs, olive oil, roasted vegetables</div></div><div class="menu-price">1,450</div></div>
-    <div class="menu-item"><div><div class="menu-name">Serbian Platter for Two</div><div class="menu-desc">Mixed selection of Serbian meats and sides</div></div><div class="menu-price">2,790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Steak with Arugula</div><div class="menu-desc">Grilled steak, fresh arugula, cherry tomatoes</div></div><div class="menu-price">2,350</div></div>
-    <div class="menu-item"><div><div class="menu-name">Smoked Trout</div><div class="menu-desc">Whole smoked trout with seasonal garnish</div></div><div class="menu-price">1,690</div></div>
-    <div class="menu-item"><div><div class="menu-name">Chicken Wok</div><div class="menu-desc">Wok-fried chicken with seasonal vegetables</div></div><div class="menu-price">1,450</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn1.name">Priboj Kebabs</div><div class="menu-desc" data-i18n="m.mn1.desc">Traditional Serbian-style kebabs</div></div><div class="menu-price">1,450</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn2.name">BBQ Ribs</div><div class="menu-desc" data-i18n="m.mn2.desc">Slow-cooked ribs with BBQ glaze</div></div><div class="menu-price">1,650</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn3.name">Veal Schnitzel</div><div class="menu-desc" data-i18n="m.mn3.desc">Breaded veal with seasonal sides</div></div><div class="menu-price">1,790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn4.name">Mediterranean Chicken</div><div class="menu-desc" data-i18n="m.mn4.desc">Herbs, olive oil, roasted vegetables</div></div><div class="menu-price">1,450</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn5.name">Serbian Platter for Two</div><div class="menu-desc" data-i18n="m.mn5.desc">Mixed selection of Serbian meats and sides</div></div><div class="menu-price">2,790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn6.name">Steak with Arugula</div><div class="menu-desc" data-i18n="m.mn6.desc">Grilled steak, fresh arugula, cherry tomatoes</div></div><div class="menu-price">2,350</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn7.name">Smoked Trout</div><div class="menu-desc" data-i18n="m.mn7.desc">Whole smoked trout with seasonal garnish</div></div><div class="menu-price">1,690</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn8.name">Chicken Wok</div><div class="menu-desc" data-i18n="m.mn8.desc">Wok-fried chicken with seasonal vegetables</div></div><div class="menu-price">1,450</div></div>
   </div>
 
+  <!-- PIZZA -->
   <div id="pizza" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Margherita</div><div class="menu-desc">San Marzano tomato, mozzarella, basil</div></div><div class="menu-price">1,150</div></div>
-    <div class="menu-item"><div><div class="menu-name">Capricciosa</div><div class="menu-desc">Ham, mushrooms, olives, mozzarella</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name">Diavola</div><div class="menu-desc">Spicy salami, chili, mozzarella</div></div><div class="menu-price">1,350</div></div>
-    <div class="menu-item"><div><div class="menu-name">Four Cheese Pizza</div><div class="menu-desc">Mozzarella, gorgonzola, parmesan, ricotta</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name">Serbian Pizza</div><div class="menu-desc">Local meats and traditional flavors</div></div><div class="menu-price">1,490</div></div>
-    <div class="menu-item"><div><div class="menu-name">Prosciutto & Arugula</div><div class="menu-desc">Prosciutto crudo, arugula, cherry tomatoes</div></div><div class="menu-price">1,590</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz1.name">Margherita</div><div class="menu-desc" data-i18n="m.pz1.desc">San Marzano tomato, mozzarella, basil</div></div><div class="menu-price">1,150</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz2.name">Capricciosa</div><div class="menu-desc" data-i18n="m.pz2.desc">Ham, mushrooms, olives, mozzarella</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz3.name">Diavola</div><div class="menu-desc" data-i18n="m.pz3.desc">Spicy salami, chili, mozzarella</div></div><div class="menu-price">1,350</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz4.name">Four Cheese Pizza</div><div class="menu-desc" data-i18n="m.pz4.desc">Mozzarella, gorgonzola, parmesan, ricotta</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz5.name">Serbian Pizza</div><div class="menu-desc" data-i18n="m.pz5.desc">Local meats and traditional flavors</div></div><div class="menu-price">1,490</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz6.name">Prosciutto &amp; Arugula</div><div class="menu-desc" data-i18n="m.pz6.desc">Prosciutto crudo, arugula, cherry tomatoes</div></div><div class="menu-price">1,590</div></div>
   </div>
 
+  <!-- BURGERS -->
   <div id="burgers" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Classic Burger</div><div class="menu-desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name">BBQ Burger</div><div class="menu-desc">100% beef, cheddar, grilled bacon, BBQ sauce, fries</div></div><div class="menu-price">1,490</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.bg1.name">Classic Burger</div><div class="menu-desc" data-i18n="m.bg1.desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.bg2.name">BBQ Burger</div><div class="menu-desc" data-i18n="m.bg2.desc">100% beef, cheddar, grilled bacon, BBQ sauce, fries</div></div><div class="menu-price">1,490</div></div>
   </div>
 
+  <!-- DESSERTS -->
   <div id="desserts" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name">Chocolate Cake</div><div class="menu-desc">Rich dark chocolate layer cake</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name">Pistachio & Raspberry Cake</div><div class="menu-desc">Layered pistachio cream with raspberry compote</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name">Blueberry Cake</div><div class="menu-desc">Light sponge with fresh blueberry filling</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name">Sour Cherry Cheesecake</div><div class="menu-desc">New York-style with sour cherry topping</div></div><div class="menu-price">650</div></div>
-    <div class="menu-item"><div><div class="menu-name">Chocolate Dumplings</div><div class="menu-desc">Warm chocolate-filled dumplings</div></div><div class="menu-price">590</div></div>
-    <div class="menu-item"><div><div class="menu-name">Pistachio Balls</div><div class="menu-desc">Bite-size pistachio confections</div></div><div class="menu-price">570</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d1.name">Chocolate Cake</div><div class="menu-desc" data-i18n="m.d1.desc">Rich dark chocolate layer cake</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d2.name">Pistachio &amp; Raspberry Cake</div><div class="menu-desc" data-i18n="m.d2.desc">Layered pistachio cream with raspberry compote</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d3.name">Blueberry Cake</div><div class="menu-desc" data-i18n="m.d3.desc">Light sponge with fresh blueberry filling</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d4.name">Sour Cherry Cheesecake</div><div class="menu-desc" data-i18n="m.d4.desc">New York-style with sour cherry topping</div></div><div class="menu-price">650</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d5.name">Chocolate Dumplings</div><div class="menu-desc" data-i18n="m.d5.desc">Warm chocolate-filled dumplings</div></div><div class="menu-price">590</div></div>
+    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d6.name">Pistachio Balls</div><div class="menu-desc" data-i18n="m.d6.desc">Bite-size pistachio confections</div></div><div class="menu-price">570</div></div>
   </div>
 </section>
 
-<section class="reviews">
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
   <div class="sec-header">
-    <span class="sec-label">What Guests Say</span>
-    <h2 class="serif">Guest Reviews</h2>
+    <span class="sec-label" data-i18n="rev.label">What Guests Say</span>
+    <h2 class="serif" data-i18n="rev.h2">Guest Reviews</h2>
   </div>
   <div class="reviews-grid">
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">Honestly the best breakfast in Belgrade. The LaRoc Breakfast plate is incredible — portions are generous and everything tastes homemade.</p>
-      <div class="reviewer"><div class="rev-avatar">MJ</div><div><div class="rev-name">Marija J.</div><div class="rev-date">Google Review</div></div></div>
+      <p class="review-text" data-i18n="rev.r1">Honestly the best breakfast in Belgrade. The LaRoc Breakfast plate is incredible — portions are generous and everything tastes homemade.</p>
+      <div class="reviewer"><div class="rev-avatar">MJ</div><div><div class="rev-name">Marija J.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.</p>
-      <div class="reviewer"><div class="rev-avatar">NS</div><div><div class="rev-name">Nikola S.</div><div class="rev-date">Google Review</div></div></div>
+      <p class="review-text" data-i18n="rev.r2">Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.</p>
+      <div class="reviewer"><div class="rev-avatar">NS</div><div><div class="rev-name">Nikola S.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars">★★★★★</div>
-      <p class="review-text">The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.</p>
-      <div class="reviewer"><div class="rev-avatar">AT</div><div><div class="rev-name">Ana T.</div><div class="rev-date">Google Review</div></div></div>
+      <p class="review-text" data-i18n="rev.r3">The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.</p>
+      <div class="reviewer"><div class="rev-avatar">AT</div><div><div class="rev-name">Ana T.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
   </div>
 </section>
 
+<!-- RESERVATION -->
 <section class="reservation" id="res">
   <div class="res-inner">
-    <span class="sec-label">Reservations</span>
-    <h2 class="serif">Reserve Your Table</h2>
-    <p>Join us for an unforgettable dining experience. We look forward to welcoming you.</p>
+    <span class="sec-label" data-i18n="res.label">Reservations</span>
+    <h2 class="serif" data-i18n="res.h2">Reserve Your Table</h2>
+    <p data-i18n="res.sub">Join us for an unforgettable dining experience. We look forward to welcoming you.</p>
     <div class="res-form">
-      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
-      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+381..."></div>
-      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-      <div class="form-group"><label>Guests</label><select><option>1 guest</option><option>2 guests</option><option>3–4 guests</option><option>5–6 guests</option><option>7+ guests</option></select></div>
-      <div class="form-group"><label>Date</label><input type="date"></div>
-      <div class="form-group"><label>Time</label><select><option>08:00</option><option>09:00</option><option>10:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select></div>
-      <div class="form-group full"><label>Special Requests</label><textarea placeholder="Allergies, occasion, seating preferences..."></textarea></div>
-      <button class="res-btn" onclick="this.textContent='✓ Reservation Sent!';setTimeout(()=>this.textContent='Reserve Your Table',3000)">Reserve Your Table</button>
+      <div class="form-group">
+        <label data-i18n="res.name">Full Name</label>
+        <input type="text" data-i18n-placeholder="res.name.ph">
+      </div>
+      <div class="form-group">
+        <label data-i18n="res.phone">Phone</label>
+        <input type="tel" placeholder="+381...">
+      </div>
+      <div class="form-group">
+        <label data-i18n="res.email">Email</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label data-i18n="res.guests">Guests</label>
+        <select>
+          <option data-i18n="res.g1">1 guest</option>
+          <option data-i18n="res.g2">2 guests</option>
+          <option data-i18n="res.g3">3–4 guests</option>
+          <option data-i18n="res.g4">5–6 guests</option>
+          <option data-i18n="res.g5">7+ guests</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-i18n="res.date">Date</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label data-i18n="res.time">Time</label>
+        <select>
+          <option>08:00</option><option>09:00</option><option>10:00</option>
+          <option>12:00</option><option>13:00</option><option>14:00</option>
+          <option>17:00</option><option>18:00</option><option>19:00</option>
+          <option>20:00</option><option>21:00</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label data-i18n="res.special">Special Requests</label>
+        <textarea data-i18n-placeholder="res.special.ph"></textarea>
+      </div>
+      <button class="res-btn" id="res-btn" data-i18n="res.btn">Reserve Your Table</button>
     </div>
   </div>
 </section>
 
-<section class="contact">
+<!-- CONTACT -->
+<section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <h2 class="serif">Find Us</h2>
+      <h2 class="serif" data-i18n="contact.h2">Find Us</h2>
       <div class="contact-row">
-        <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
-        <div><div class="contact-label">Address</div><div class="contact-val">Mirko Sandića 1<br>11000 Belgrade, Serbia</div></div>
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label" data-i18n="contact.address.label">Address</div>
+          <div class="contact-val" data-i18n-html="contact.address.val">Mirko Sandića 1<br>11000 Belgrade, Serbia</div>
+        </div>
       </div>
       <div class="contact-row">
-        <div class="contact-icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
-        <div><div class="contact-label">Phone</div><div class="contact-val">+381 66 428 03 0</div></div>
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label" data-i18n="contact.phone.label">Phone</div>
+          <div class="contact-val">+381 66 428 03 0</div>
+        </div>
       </div>
       <div class="contact-row">
-        <div class="contact-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
-        <div><div class="contact-label">Hours</div><div class="contact-val">Monday – Sunday<br>08:00 – 22:00</div></div>
+        <div class="contact-icon">🕐</div>
+        <div>
+          <div class="contact-label" data-i18n="contact.hours.label">Hours</div>
+          <div class="contact-val" data-i18n-html="contact.hours.val">Monday – Sunday<br>08:00 – 22:00</div>
+        </div>
       </div>
       <div class="contact-actions">
-        <button class="action-btn"><i class="ti ti-phone" aria-hidden="true"></i> Call</button>
-        <button class="action-btn"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</button>
-        <button class="action-btn"><i class="ti ti-navigation" aria-hidden="true"></i> Directions</button>
+        <button class="action-btn" onclick="window.location.href='tel:+38166428030'">📞 <span data-i18n="contact.call">Call</span></button>
+        <button class="action-btn" onclick="window.location.href='https://wa.me/38166428030'">💬 WhatsApp</button>
+        <button class="action-btn" onclick="window.open('https://maps.google.com/?q=Mirko+Sandica+1+Belgrade+Serbia')">🧭 <span data-i18n="contact.directions">Directions</span></button>
       </div>
     </div>
-    <div class="map-placeholder" onclick="openLink('https://maps.google.com/?q=Mirko+Sandica+1+Belgrade+Serbia')">
-      <i class="ti ti-map-2 map-icon" aria-hidden="true"></i>
-      <div class="map-text">View on Google Maps</div>
+    <div class="map-placeholder" onclick="window.open('https://maps.google.com/?q=Mirko+Sandica+1+Belgrade+Serbia')">
+      <div class="map-icon">🗺️</div>
+      <div class="map-text" data-i18n="contact.map">View on Google Maps</div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="footer-logo">LA ROC</div>
-  <div class="footer-sub">Belgrade · Est. 2018</div>
-  <div class="footer-line">© 2026 LaRoc Beograd. All rights reserved. · Mirko Sandića 1, Belgrade</div>
+  <div class="footer-sub" data-i18n="footer.sub">Belgrade · Est. 2018</div>
+  <div class="footer-line" data-i18n="footer.line">© 2026 LaRoc Beograd. All rights reserved. · Mirko Sandića 1, Belgrade</div>
 </footer>
 
 <script>
-document.getElementById('cats').addEventListener('click',function(e){
-  var btn=e.target.closest('.cat-btn');
-  if(!btn)return;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+// ── Translations ──────────────────────────────────────────────────────────────
+var T = {
+  en: {
+    'nav.about': 'About',
+    'nav.menu': 'Menu',
+    'nav.reviews': 'Reviews',
+    'nav.contact': 'Contact',
+    'nav.reserve': 'Reserve',
+
+    'hero.badge': 'Belgrade · Est. 2018',
+    'hero.h1': 'Where Great Food Becomes <em>an Experience</em>',
+    'hero.sub': 'Breakfast, premium grill, artisan pizza, fresh pasta, and Serbian specialties in the heart of Belgrade.',
+    'hero.btn1': 'Book a Table',
+    'hero.btn2': 'View Menu',
+    'hero.btn3': 'Order Online',
+    'hero.hours': 'Mon – Sun · 08:00 – 22:00',
+
+    'feat.breakfast.title': 'Breakfast',
+    'feat.breakfast.sub': 'Served daily',
+    'feat.grill.title': 'Premium Grill',
+    'feat.grill.sub': 'Selected cuts',
+    'feat.pizza.title': 'Artisan Pizza',
+    'feat.pizza.sub': 'Stone-baked',
+    'feat.burgers.title': 'Gourmet Burgers',
+    'feat.burgers.sub': '100% beef',
+    'feat.pasta.title': 'Fresh Pasta',
+    'feat.pasta.sub': 'Made daily',
+    'feat.dining.title': 'Relaxed Dining',
+    'feat.dining.sub': 'Warm atmosphere',
+
+    'about.photo': 'Restaurant Photography',
+    'about.label': 'Our Story',
+    'about.h2': 'A Passion for Food, A Love for Belgrade',
+    'about.p1': 'LaRoc was born from a simple belief — that every meal should feel like a celebration. We blend Serbian warmth with Mediterranean flavors and international culinary craft.',
+    'about.p2': 'Every dish is prepared fresh each day, using quality ingredients sourced from trusted local producers and artisan suppliers.',
+    'about.stat1': 'Years Serving',
+    'about.stat2': 'Menu Items',
+    'about.stat3': 'Guest Rating',
+
+    'menu.label': 'Explore',
+    'menu.h2': 'Our Menu',
+    'menu.cat.breakfast': 'Breakfast',
+    'menu.cat.sandwiches': 'Sandwiches',
+    'menu.cat.appetizers': 'Appetizers',
+    'menu.cat.pasta': 'Pasta',
+    'menu.cat.mains': 'Mains',
+    'menu.cat.pizza': 'Pizza',
+    'menu.cat.burgers': 'Burgers',
+    'menu.cat.desserts': 'Desserts',
+
+    // Breakfast
+    'm.b1.name': 'LaRoc Breakfast',
+    'm.b1.desc': '3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes',
+    'm.b2.name': 'Italian Toast',
+    'm.b2.desc': 'French fries, sour cream, ham, cheese, peppers',
+    'm.b3.name': 'Greek Scrambled Eggs',
+    'm.b3.desc': 'Pita, scrambled eggs, tzatziki, grilled bacon, tomatoes',
+    'm.b4.name': 'Valjevo Breakfast',
+    'm.b4.desc': 'Cracklings, fresh cream, ajvar, crispy bacon',
+    'm.b5.name': 'Avocado Toast',
+    'm.b5.desc': 'Toasted bread, guacamole, cherry tomatoes, arugula',
+    'm.b6.name': 'Breakfast for Two',
+    'm.b6.desc': '4 eggs, sausages, bacon, cream, ajvar, tomatoes',
+    'm.b7.name': 'Sweet Doughnuts',
+    'm.b7.desc': 'Doughnuts with Nutella',
+    'm.b8.name': 'Protein Breakfast',
+    'm.b8.desc': '5 egg white omelet with peppers and mushrooms',
+
+    // Sandwiches
+    'm.s1.name': 'Classic Sandwich',
+    'm.s1.desc': 'Homemade ciabatta, sour cream, ham, cheese, tomatoes',
+    'm.s2.name': 'Curry Chicken Sandwich',
+    'm.s2.desc': 'Ciabatta, mango curry sauce, grilled chicken, lettuce',
+    'm.s3.name': 'Pesto Sandwich',
+    'm.s3.desc': 'Ciabatta, pesto, cured prosciutto, fresh mozzarella',
+    'm.s4.name': 'Spicy Sandwich',
+    'm.s4.desc': 'Ciabatta, mayonnaise, homemade kulen sausage, cheese',
+    'm.s5.name': 'Zlatibor Sandwich',
+    'm.s5.desc': 'Ciabatta, young cream cheese, prosciutto',
+    'm.s6.name': 'Tel Aviv Sandwich',
+    'm.s6.desc': 'Ciabatta, hummus, grilled vegetables',
+
+    // Appetizers
+    'm.a1.name': 'LaRoc Platter',
+    'm.a1.desc': 'Prosciutto, chorizo, gorgonzola, smoked cheese, olives',
+    'm.a2.name': 'Fried Mix',
+    'm.a2.desc': 'Mozzarella sticks, chicken sticks, onion rings, fries',
+    'm.a3.name': 'Tomato Bruschetta',
+    'm.a3.desc': 'Fresh tomatoes on toasted bread',
+    'm.a4.name': 'Greek Bouyourdi',
+    'm.a4.desc': 'Feta cheese, olive oil, tomatoes, oregano',
+    'm.a5.name': 'Spring Rolls',
+    'm.a5.desc': 'Vegetable spring rolls with sweet chili sauce',
+
+    // Pasta
+    'm.p1.name': 'Penne Arrabbiata',
+    'm.p1.desc': 'Classic spicy tomato sauce',
+    'm.p2.name': 'Four Cheese Chicken Penne',
+    'm.p2.desc': 'Creamy four cheese sauce with grilled chicken',
+    'm.p3.name': 'Tagliatelle Bolognese',
+    'm.p3.desc': 'Classic slow-cooked meat ragù',
+    'm.p4.name': 'Prosciutto Parmigiano Tagliatelle',
+    'm.p4.desc': 'Prosciutto, parmigiano, cream sauce',
+    'm.p5.name': 'Steak Tagliatelle',
+    'm.p5.desc': 'Premium steak strips with fresh pasta',
+    'm.p6.name': 'Shrimp Tagliatelle',
+    'm.p6.desc': 'Fresh shrimp in Mediterranean sauce',
+
+    // Mains
+    'm.mn1.name': 'Priboj Kebabs',
+    'm.mn1.desc': 'Traditional Serbian-style kebabs',
+    'm.mn2.name': 'BBQ Ribs',
+    'm.mn2.desc': 'Slow-cooked ribs with BBQ glaze',
+    'm.mn3.name': 'Veal Schnitzel',
+    'm.mn3.desc': 'Breaded veal with seasonal sides',
+    'm.mn4.name': 'Mediterranean Chicken',
+    'm.mn4.desc': 'Herbs, olive oil, roasted vegetables',
+    'm.mn5.name': 'Serbian Platter for Two',
+    'm.mn5.desc': 'Mixed selection of Serbian meats and sides',
+    'm.mn6.name': 'Steak with Arugula',
+    'm.mn6.desc': 'Grilled steak, fresh arugula, cherry tomatoes',
+    'm.mn7.name': 'Smoked Trout',
+    'm.mn7.desc': 'Whole smoked trout with seasonal garnish',
+    'm.mn8.name': 'Chicken Wok',
+    'm.mn8.desc': 'Wok-fried chicken with seasonal vegetables',
+
+    // Pizza
+    'm.pz1.name': 'Margherita',
+    'm.pz1.desc': 'San Marzano tomato, mozzarella, basil',
+    'm.pz2.name': 'Capricciosa',
+    'm.pz2.desc': 'Ham, mushrooms, olives, mozzarella',
+    'm.pz3.name': 'Diavola',
+    'm.pz3.desc': 'Spicy salami, chili, mozzarella',
+    'm.pz4.name': 'Four Cheese Pizza',
+    'm.pz4.desc': 'Mozzarella, gorgonzola, parmesan, ricotta',
+    'm.pz5.name': 'Serbian Pizza',
+    'm.pz5.desc': 'Local meats and traditional flavors',
+    'm.pz6.name': 'Prosciutto & Arugula',
+    'm.pz6.desc': 'Prosciutto crudo, arugula, cherry tomatoes',
+
+    // Burgers
+    'm.bg1.name': 'Classic Burger',
+    'm.bg1.desc': '100% beef, cheddar, tomato, iceberg lettuce, fries',
+    'm.bg2.name': 'BBQ Burger',
+    'm.bg2.desc': '100% beef, cheddar, grilled bacon, BBQ sauce, fries',
+
+    // Desserts
+    'm.d1.name': 'Chocolate Cake',
+    'm.d1.desc': 'Rich dark chocolate layer cake',
+    'm.d2.name': 'Pistachio & Raspberry Cake',
+    'm.d2.desc': 'Layered pistachio cream with raspberry compote',
+    'm.d3.name': 'Blueberry Cake',
+    'm.d3.desc': 'Light sponge with fresh blueberry filling',
+    'm.d4.name': 'Sour Cherry Cheesecake',
+    'm.d4.desc': 'New York-style with sour cherry topping',
+    'm.d5.name': 'Chocolate Dumplings',
+    'm.d5.desc': 'Warm chocolate-filled dumplings',
+    'm.d6.name': 'Pistachio Balls',
+    'm.d6.desc': 'Bite-size pistachio confections',
+
+    // Reviews
+    'rev.label': 'What Guests Say',
+    'rev.h2': 'Guest Reviews',
+    'rev.r1': 'Honestly the best breakfast in Belgrade. The LaRoc Breakfast plate is incredible — portions are generous and everything tastes homemade.',
+    'rev.r2': 'Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.',
+    'rev.r3': 'The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.',
+    'rev.source': 'Google Review',
+
+    // Reservation
+    'res.label': 'Reservations',
+    'res.h2': 'Reserve Your Table',
+    'res.sub': 'Join us for an unforgettable dining experience. We look forward to welcoming you.',
+    'res.name': 'Full Name',
+    'res.name.ph': 'Your name',
+    'res.phone': 'Phone',
+    'res.email': 'Email',
+    'res.guests': 'Guests',
+    'res.g1': '1 guest',
+    'res.g2': '2 guests',
+    'res.g3': '3–4 guests',
+    'res.g4': '5–6 guests',
+    'res.g5': '7+ guests',
+    'res.date': 'Date',
+    'res.time': 'Time',
+    'res.special': 'Special Requests',
+    'res.special.ph': 'Allergies, occasion, seating preferences…',
+    'res.btn': 'Reserve Your Table',
+    'res.btn.sent': '✓ Reservation Sent!',
+
+    // Contact
+    'contact.h2': 'Find Us',
+    'contact.address.label': 'Address',
+    'contact.address.val': 'Mirko Sandića 1<br>11000 Belgrade, Serbia',
+    'contact.phone.label': 'Phone',
+    'contact.hours.label': 'Hours',
+    'contact.hours.val': 'Monday – Sunday<br>08:00 – 22:00',
+    'contact.call': 'Call',
+    'contact.directions': 'Directions',
+    'contact.map': 'View on Google Maps',
+
+    // Footer
+    'footer.sub': 'Belgrade · Est. 2018',
+    'footer.line': '© 2026 LaRoc Beograd. All rights reserved. · Mirko Sandića 1, Belgrade'
+  },
+
+  sr: {
+    'nav.about': 'O nama',
+    'nav.menu': 'Meni',
+    'nav.reviews': 'Recenzije',
+    'nav.contact': 'Kontakt',
+    'nav.reserve': 'Rezervišite',
+
+    'hero.badge': 'Beograd · Osnovan 2018',
+    'hero.h1': 'Gde Dobra Hrana Postaje <em>Iskustvo</em>',
+    'hero.sub': 'Doručak, premium roštilj, zanatska pica, sveža pasta i srpske specijalitete u srcu Beograda.',
+    'hero.btn1': 'Rezervišite Sto',
+    'hero.btn2': 'Pogledajte Meni',
+    'hero.btn3': 'Poručite Online',
+    'hero.hours': 'Pon – Ned · 08:00 – 22:00',
+
+    'feat.breakfast.title': 'Doručak',
+    'feat.breakfast.sub': 'Svakog dana',
+    'feat.grill.title': 'Premium Roštilj',
+    'feat.grill.sub': 'Odabrani komadi',
+    'feat.pizza.title': 'Zanatska Pica',
+    'feat.pizza.sub': 'Pečena na kamenu',
+    'feat.burgers.title': 'Gurman Burgeri',
+    'feat.burgers.sub': '100% junetina',
+    'feat.pasta.title': 'Sveža Pasta',
+    'feat.pasta.sub': 'Pravi se svaki dan',
+    'feat.dining.title': 'Opuštena Večera',
+    'feat.dining.sub': 'Topla atmosfera',
+
+    'about.photo': 'Fotografije Restorana',
+    'about.label': 'Naša Priča',
+    'about.h2': 'Strast Prema Hrani, Ljubav Prema Beogradu',
+    'about.p1': 'LaRoc je nastao iz jednostavnog verovanja — da svaki obrok treba da se oseća kao proslava. Mešamo srpsku toplinu sa mediteranskim ukusima i međunarodnom kulinarskom veštinom.',
+    'about.p2': 'Svako jelo se svakodnevno priprema sveže, koristeći kvalitetne sastojke od pouzdanih lokalnih proizvođača i zanatskih dobavljača.',
+    'about.stat1': 'Godine Rada',
+    'about.stat2': 'Stavke Menija',
+    'about.stat3': 'Ocena Gostiju',
+
+    'menu.label': 'Istražite',
+    'menu.h2': 'Naš Meni',
+    'menu.cat.breakfast': 'Doručak',
+    'menu.cat.sandwiches': 'Sendviči',
+    'menu.cat.appetizers': 'Predjela',
+    'menu.cat.pasta': 'Pasta',
+    'menu.cat.mains': 'Glavna Jela',
+    'menu.cat.pizza': 'Pica',
+    'menu.cat.burgers': 'Burgeri',
+    'menu.cat.desserts': 'Deserti',
+
+    // Breakfast
+    'm.b1.name': 'LaRoc Doručak',
+    'm.b1.desc': '3 mešana jaja, kobasice, dimljeni sir, ajsberg, cherry paradajz',
+    'm.b2.name': 'Italijanski Tost',
+    'm.b2.desc': 'Pomfrit, kisela pavlaka, šunka, sir, paprika',
+    'm.b3.name': 'Grčka Mešana Jaja',
+    'm.b3.desc': 'Pita, mešana jaja, tzatziki, grilovana slanina, paradajz',
+    'm.b4.name': 'Valjevski Doručak',
+    'm.b4.desc': 'Čvarci, sveža pavlaka, ajvar, hrskava slanina',
+    'm.b5.name': 'Avokado Tost',
+    'm.b5.desc': 'Tostiran hleb, guakamole, cherry paradajz, rukola',
+    'm.b6.name': 'Doručak za Dvoje',
+    'm.b6.desc': '4 jaja, kobasice, slanina, pavlaka, ajvar, paradajz',
+    'm.b7.name': 'Slatke Krofne',
+    'm.b7.desc': 'Krofne sa Nutellom',
+    'm.b8.name': 'Proteinski Doručak',
+    'm.b8.desc': 'Omlet od 5 belanaca sa paprikom i pečurkama',
+
+    // Sandwiches
+    'm.s1.name': 'Klasičan Sendvič',
+    'm.s1.desc': 'Domaća čijabata, kisela pavlaka, šunka, sir, paradajz',
+    'm.s2.name': 'Sendvič sa Karijem i Piletinom',
+    'm.s2.desc': 'Čijabata, mango kari sos, grilovana piletina, zelena salata',
+    'm.s3.name': 'Pesto Sendvič',
+    'm.s3.desc': 'Čijabata, pesto, sušena pršuta, sveži mocarela',
+    'm.s4.name': 'Ljuti Sendvič',
+    'm.s4.desc': 'Čijabata, majonez, domaći kulen, sir',
+    'm.s5.name': 'Zlatibor Sendvič',
+    'm.s5.desc': 'Čijabata, mladi krem sir, pršuta',
+    'm.s6.name': 'Tel Aviv Sendvič',
+    'm.s6.desc': 'Čijabata, humus, grilovano povrće',
+
+    // Appetizers
+    'm.a1.name': 'LaRoc Tanjir',
+    'm.a1.desc': 'Pršuta, čorizo, gorgonzola, dimljeni sir, masline',
+    'm.a2.name': 'Mešano Prženo',
+    'm.a2.desc': 'Štapići mocarele, pileći štapići, kolutovi luka, pomfrit',
+    'm.a3.name': 'Bruschetta s Paradajzom',
+    'm.a3.desc': 'Svež paradajz na tostiranom hlebu',
+    'm.a4.name': 'Grčko Bujurdi',
+    'm.a4.desc': 'Feta sir, maslinovo ulje, paradajz, origano',
+    'm.a5.name': 'Prolećni Rolovi',
+    'm.a5.desc': 'Vegetarijanski prolećni rolovi sa slatkim čili sosom',
+
+    // Pasta
+    'm.p1.name': 'Pene Arabijata',
+    'm.p1.desc': 'Klasičan ljuti paradajz sos',
+    'm.p2.name': 'Pene sa Četiri Sira i Piletinom',
+    'm.p2.desc': 'Kremasti sos od četiri sira sa grilovanjem piletinom',
+    'm.p3.name': 'Talijatele Bolognese',
+    'm.p3.desc': 'Klasični sporo kuvani mesni ragù',
+    'm.p4.name': 'Talijatele s Pršutom i Parmezanom',
+    'm.p4.desc': 'Pršuta, parmezan, krem sos',
+    'm.p5.name': 'Talijatele s Biftekomom',
+    'm.p5.desc': 'Premium trake od bifteka sa svežom pastom',
+    'm.p6.name': 'Talijatele s Kozicama',
+    'm.p6.desc': 'Sveže kozice u mediteranskom sosu',
+
+    // Mains
+    'm.mn1.name': 'Pribojski Ćevapi',
+    'm.mn1.desc': 'Tradicionalni srpski ćevapi',
+    'm.mn2.name': 'BBQ Rebarca',
+    'm.mn2.desc': 'Sporo kuvana rebarca sa BBQ glazurom',
+    'm.mn3.name': 'Teleći Šnicl',
+    'm.mn3.desc': 'Pohovan telić sa sezonskim prilogom',
+    'm.mn4.name': 'Mediteranska Piletina',
+    'm.mn4.desc': 'Začinsko bilje, maslinovo ulje, pečeno povrće',
+    'm.mn5.name': 'Srpski Tanjir za Dvoje',
+    'm.mn5.desc': 'Mešani izbor srpskog mesa i priloga',
+    'm.mn6.name': 'Biftok s Rukolom',
+    'm.mn6.desc': 'Grilovani biftok, sveža rukola, cherry paradajz',
+    'm.mn7.name': 'Dimljena Pastrmka',
+    'm.mn7.desc': 'Cela dimljena pastrmka sa sezonskim ukrasom',
+    'm.mn8.name': 'Pileći Vok',
+    'm.mn8.desc': 'Pileće meso prženo u voku sa sezonskim povrćem',
+
+    // Pizza
+    'm.pz1.name': 'Margherita',
+    'm.pz1.desc': 'San Marcano paradajz, mocarela, bosiljak',
+    'm.pz2.name': 'Kapričoza',
+    'm.pz2.desc': 'Šunka, pečurke, masline, mocarela',
+    'm.pz3.name': 'Đavola',
+    'm.pz3.desc': 'Ljuta salama, čili, mocarela',
+    'm.pz4.name': 'Pica Četiri Sira',
+    'm.pz4.desc': 'Mocarela, gorgonzola, parmezan, rikota',
+    'm.pz5.name': 'Srpska Pica',
+    'm.pz5.desc': 'Lokalno meso i tradicionalni ukusi',
+    'm.pz6.name': 'Pršuta i Rukola',
+    'm.pz6.desc': 'Pršuta crudo, rukola, cherry paradajz',
+
+    // Burgers
+    'm.bg1.name': 'Klasičan Burger',
+    'm.bg1.desc': '100% junetina, čedar, paradajz, ajsberg zelena salata, pomfrit',
+    'm.bg2.name': 'BBQ Burger',
+    'm.bg2.desc': '100% junetina, čedar, grilovana slanina, BBQ sos, pomfrit',
+
+    // Desserts
+    'm.d1.name': 'Čokoladna Torta',
+    'm.d1.desc': 'Bogata tamna čokoladna torta',
+    'm.d2.name': 'Torta s Pistacijom i Malinom',
+    'm.d2.desc': 'Slojevita pistacija krema sa malinom',
+    'm.d3.name': 'Borovnička Torta',
+    'm.d3.desc': 'Lagani biskvit sa svežim borovnicama',
+    'm.d4.name': 'Čizkejk s Višnjom',
+    'm.d4.desc': 'Njujorški stil sa topingom od višnje',
+    'm.d5.name': 'Čokoladne Knedle',
+    'm.d5.desc': 'Tople knedle punjene čokoladom',
+    'm.d6.name': 'Pistacija Kuglice',
+    'm.d6.desc': 'Zalogajčići od pistacije',
+
+    // Reviews
+    'rev.label': 'Šta Kažu Gosti',
+    'rev.h2': 'Recenzije Gostiju',
+    'rev.r1': 'Iskreno, najbolji doručak u Beogradu. LaRoc Breakfast tanjir je neverovatан — porcije su velike i sve ima ukus domaće hrane.',
+    'rev.r2': 'Došli smo zbog BBQ rebaraca i ostali zbog atmosfere. Toplo, opušteno i hrana je dosledno odlična svaki put.',
+    'rev.r3': 'Pistacija torta je van ovoga sveta. Osoblje je tako prijatno, cene su fer, a meni ima nešto za svakoga. Toplo preporučujem.',
+    'rev.source': 'Google Recenzija',
+
+    // Reservation
+    'res.label': 'Rezervacije',
+    'res.h2': 'Rezervišite Vaš Sto',
+    'res.sub': 'Pridružite nam se za nezaboravno gastronomsko iskustvo. Radujemo se dobrodošlici.',
+    'res.name': 'Ime i Prezime',
+    'res.name.ph': 'Vaše ime',
+    'res.phone': 'Telefon',
+    'res.email': 'Imejl',
+    'res.guests': 'Gosti',
+    'res.g1': '1 gost',
+    'res.g2': '2 gosta',
+    'res.g3': '3–4 gosta',
+    'res.g4': '5–6 gostiju',
+    'res.g5': '7+ gostiju',
+    'res.date': 'Datum',
+    'res.time': 'Vreme',
+    'res.special': 'Posebni Zahtevi',
+    'res.special.ph': 'Alergije, povod, preference sedenja…',
+    'res.btn': 'Rezervišite Vaš Sto',
+    'res.btn.sent': '✓ Rezervacija Poslata!',
+
+    // Contact
+    'contact.h2': 'Pronađite Nas',
+    'contact.address.label': 'Adresa',
+    'contact.address.val': 'Mirko Sandića 1<br>11000 Beograd, Srbija',
+    'contact.phone.label': 'Telefon',
+    'contact.hours.label': 'Radno Vreme',
+    'contact.hours.val': 'Ponedeljak – Nedeljа<br>08:00 – 22:00',
+    'contact.call': 'Pozovite',
+    'contact.directions': 'Navigacija',
+    'contact.map': 'Pogledajte na Google Mapi',
+
+    // Footer
+    'footer.sub': 'Beograd · Osnovan 2018',
+    'footer.line': '© 2026 LaRoc Beograd. Sva prava zadržana. · Mirko Sandića 1, Beograd'
+  }
+};
+
+// ── Language Engine ────────────────────────────────────────────────────────────
+var currentLang = 'en';
+
+function applyTranslations(lang) {
+  var dict = T[lang];
+  // textContent elements
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  // innerHTML elements (allow <em> etc.)
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+  // placeholder elements
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+}
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+
+  // Update toggle button styles
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-sr').classList.toggle('active', lang === 'sr');
+  document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+  document.getElementById('btn-sr').setAttribute('aria-pressed', lang === 'sr');
+
+  applyTranslations(lang);
+}
+
+// ── Menu Category Tabs ─────────────────────────────────────────────────────────
+document.getElementById('cats').addEventListener('click', function(e) {
+  var btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  var cat=btn.dataset.cat;
-  document.querySelectorAll('.menu-section').forEach(s=>{
-    s.classList.toggle('visible',s.id===cat);
+  var cat = btn.dataset.cat;
+  document.querySelectorAll('.menu-section').forEach(function(s) {
+    s.classList.toggle('visible', s.id === cat);
   });
 });
+
+// ── Reservation Button ─────────────────────────────────────────────────────────
+document.getElementById('res-btn').addEventListener('click', function() {
+  var btn = this;
+  btn.textContent = T[currentLang]['res.btn.sent'];
+  setTimeout(function() {
+    btn.textContent = T[currentLang]['res.btn'];
+  }, 3000);
+});
 </script>
+</body>
+</html>
