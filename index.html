@@ -1,0 +1,371 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--gold:#C9A84C;--black:#111;--dark:#1a1a1a;--burg:#7A1F1F;--white:#fff;--gray:#888}
+  body,html{font-family:'Inter',sans-serif;background:#0d0d0d;color:#e8e0d0}
+  .serif{font-family:'Playfair Display',serif}
+  .gold{color:var(--gold)}
+  section{width:100%;overflow:hidden}
+
+  /* NAV */
+  nav{background:rgba(13,13,13,0.97);border-bottom:1px solid rgba(201,168,76,0.2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);letter-spacing:2px}
+  .nav-links{display:flex;gap:20px;list-style:none}
+  .nav-links a{color:#c8bfa0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-cta{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:9px 18px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif}
+
+  /* HERO */
+  .hero{background:linear-gradient(160deg,#0d0d0d 0%,#1a1008 50%,#0d0d0d 100%);min-height:480px;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 28px;position:relative;border-bottom:1px solid rgba(201,168,76,0.15)}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(201,168,76,0.07) 0%,transparent 70%)}
+  .hero-badge{display:inline-block;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:6px 16px;margin-bottom:24px}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4.5vw,52px);font-weight:400;color:#f0e8d0;line-height:1.2;margin-bottom:16px;max-width:620px}
+  .hero h1 em{color:var(--gold);font-style:italic}
+  .hero p{font-size:14px;color:#a09070;line-height:1.7;max-width:420px;margin:0 auto 32px;letter-spacing:.3px}
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:13px 26px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif;transition:opacity .2s}
+  .btn-primary:hover{opacity:.85}
+  .btn-outline{background:transparent;color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(201,168,76,0.5);padding:12px 26px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+  .hero-divider{display:flex;align-items:center;gap:16px;margin-top:36px;justify-content:center}
+  .hero-divider span{color:#6a5a3a;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  .hero-divider::before,.hero-divider::after{content:'';height:1px;width:60px;background:rgba(201,168,76,0.25)}
+
+  /* FEATURES */
+  .features{background:#111;padding:48px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:rgba(201,168,76,0.1);max-width:840px;margin:0 auto}
+  .feat-card{background:#111;padding:24px 16px;text-align:center}
+  .feat-icon{font-size:22px;margin-bottom:10px;display:block}
+  .feat-title{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#c8bfa0;margin-bottom:4px}
+  .feat-sub{font-size:11px;color:#5a5040;line-height:1.4}
+
+  /* ABOUT */
+  .about{background:#0f0f0f;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .about-inner{max-width:840px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .about-img{background:#1a1510;border:1px solid rgba(201,168,76,0.2);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+  .about-img::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(201,168,76,0.05) 0%,transparent 70%)}
+  .photo-placeholder{font-size:48px;opacity:.3}
+  .photo-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#5a4a2a}
+  .about-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+  .about h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:#f0e8d0;margin-bottom:16px;line-height:1.3}
+  .about p{font-size:13px;color:#8a7a60;line-height:1.8;margin-bottom:12px}
+  .about-stats{display:flex;gap:24px;margin-top:24px;padding-top:24px;border-top:1px solid rgba(201,168,76,0.15)}
+  .stat-n{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);display:block}
+  .stat-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6a5a40;margin-top:2px}
+
+  /* MENU */
+  .menu-sec{background:#111;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .sec-header{text-align:center;margin-bottom:36px}
+  .sec-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+  .sec-header h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:#f0e8d0}
+  .menu-cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+  .cat-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:#8a7a60;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .cat-btn.active,.cat-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06)}
+  .menu-grid{max-width:840px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,0.08)}
+  .menu-item{background:#111;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;transition:background .2s}
+  .menu-item:hover{background:#161410}
+  .menu-name{font-size:13px;color:#d8c89a;font-weight:400;margin-bottom:4px}
+  .menu-desc{font-size:11px;color:#5a5040;line-height:1.5}
+  .menu-price{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold);white-space:nowrap;flex-shrink:0}
+
+  /* REVIEWS */
+  .reviews{background:#0f0f0f;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .reviews-grid{max-width:840px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .review-card{background:#161410;border:1px solid rgba(201,168,76,0.12);padding:20px;position:relative}
+  .review-card::before{content:'\201C';font-family:'Playfair Display',serif;font-size:48px;color:rgba(201,168,76,0.15);position:absolute;top:8px;left:16px;line-height:1}
+  .stars{color:var(--gold);font-size:12px;margin-bottom:8px;letter-spacing:2px}
+  .review-text{font-size:12px;color:#8a7a60;line-height:1.7;margin-bottom:16px}
+  .reviewer{display:flex;align-items:center;gap:10px}
+  .rev-avatar{width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);font-weight:500;flex-shrink:0}
+  .rev-name{font-size:12px;color:#c8bfa0;font-weight:500}
+  .rev-date{font-size:10px;color:#4a4030}
+
+  /* RESERVATION */
+  .reservation{background:#111;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .res-inner{max-width:540px;margin:0 auto;text-align:center}
+  .res-inner h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:#f0e8d0;margin-bottom:8px}
+  .res-inner p{font-size:13px;color:#6a5a40;margin-bottom:28px}
+  .res-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+  .res-form .full{grid-column:1/-1}
+  .form-group label{display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6a5a40;margin-bottom:6px}
+  .form-group input,.form-group select,.form-group textarea{width:100%;background:#161410;border:1px solid rgba(201,168,76,0.2);color:#c8bfa0;font-size:13px;padding:11px 14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(201,168,76,0.5)}
+  .form-group select{appearance:none;cursor:pointer}
+  .form-group textarea{resize:vertical;min-height:72px}
+  .res-form .form-group select option{background:#161410}
+  .res-btn{grid-column:1/-1;background:var(--gold);color:#111;font-size:11px;letter-spacing:2px;text-transform:uppercase;border:none;padding:15px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif;margin-top:4px;transition:opacity .2s}
+  .res-btn:hover{opacity:.85}
+
+  /* CONTACT */
+  .contact{background:#0d0d0d;padding:56px 28px}
+  .contact-inner{max-width:840px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .contact h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#f0e8d0;margin-bottom:24px}
+  .contact-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+  .contact-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0}
+  .contact-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#5a5040;margin-bottom:4px}
+  .contact-val{font-size:13px;color:#c8bfa0;line-height:1.6}
+  .map-placeholder{background:#161410;border:1px solid rgba(201,168,76,0.15);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:border-color .2s}
+  .map-placeholder:hover{border-color:rgba(201,168,76,0.35)}
+  .map-icon{font-size:28px;color:rgba(201,168,76,0.3)}
+  .map-text{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#4a3a20}
+  .contact-actions{display:flex;gap:8px;margin-top:24px}
+  .action-btn{flex:1;background:transparent;border:1px solid rgba(201,168,76,0.25);color:#8a7a60;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;padding:10px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+  .action-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+  /* FOOTER */
+  footer{background:#0a0a0a;border-top:1px solid rgba(201,168,76,0.15);padding:28px;text-align:center}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);letter-spacing:2px;margin-bottom:8px}
+  .footer-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#3a3020;margin-bottom:16px}
+  .footer-line{font-size:11px;color:#3a3020}
+
+  /* MENU SECTIONS */
+  .menu-section{display:none}
+  .menu-section.visible{display:grid}
+
+  @media(max-width:600px){
+    .about-inner,.contact-inner{grid-template-columns:1fr}
+    .menu-grid,.reviews-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+    .res-form{grid-template-columns:1fr}
+    .res-form .full{grid-column:1}
+    .res-btn{grid-column:1}
+  }
+</style>
+
+<h2 class="sr-only">LaRoc Beograd — restaurant website preview</h2>
+
+<nav>
+  <div class="nav-logo">LA ROC</div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="nav-cta">Reserve</button>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">Belgrade · Est. 2018</div>
+    <h1 class="serif">Where Great Food Becomes <em>an Experience</em></h1>
+    <p>Breakfast, premium grill, artisan pizza, fresh pasta, and Serbian specialties in the heart of Belgrade.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('res').scrollIntoView({behavior:'smooth'})">Book a Table</button>
+      <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Menu</button>
+      <button class="btn-outline">Order Online</button>
+    </div>
+    <div class="hero-divider"><span>Mon – Sun · 08:00 – 22:00</span></div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-grid">
+    <div class="feat-card"><span class="feat-icon">🍳</span><div class="feat-title">Breakfast</div><div class="feat-sub">Served daily</div></div>
+    <div class="feat-card"><span class="feat-icon">🔥</span><div class="feat-title">Premium Grill</div><div class="feat-sub">Selected cuts</div></div>
+    <div class="feat-card"><span class="feat-icon">🍕</span><div class="feat-title">Artisan Pizza</div><div class="feat-sub">Stone-baked</div></div>
+    <div class="feat-card"><span class="feat-icon">🍔</span><div class="feat-title">Gourmet Burgers</div><div class="feat-sub">100% beef</div></div>
+    <div class="feat-card"><span class="feat-icon">🍝</span><div class="feat-title">Fresh Pasta</div><div class="feat-sub">Made daily</div></div>
+    <div class="feat-card"><span class="feat-icon">🍷</span><div class="feat-title">Relaxed Dining</div><div class="feat-sub">Warm atmosphere</div></div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-inner">
+    <div class="about-img">
+      <div class="photo-placeholder">🍽</div>
+      <div class="photo-label">Restaurant Photography</div>
+    </div>
+    <div>
+      <span class="about-label">Our Story</span>
+      <h2 class="serif">A Passion for Food, A Love for Belgrade</h2>
+      <p>LaRoc was born from a simple belief — that every meal should feel like a celebration. We blend Serbian warmth with Mediterranean flavors and international culinary craft.</p>
+      <p>Every dish is prepared fresh each day, using quality ingredients sourced from trusted local producers and artisan suppliers.</p>
+      <div class="about-stats">
+        <div><span class="stat-n gold">8+</span><span class="stat-l">Years Serving</span></div>
+        <div><span class="stat-n gold">50+</span><span class="stat-l">Menu Items</span></div>
+        <div><span class="stat-n gold">★4.8</span><span class="stat-l">Guest Rating</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="sec-header">
+    <span class="sec-label">Explore</span>
+    <h2 class="serif">Our Menu</h2>
+  </div>
+  <div class="menu-cats" id="cats">
+    <button class="cat-btn active" data-cat="breakfast">Breakfast</button>
+    <button class="cat-btn" data-cat="sandwiches">Sandwiches</button>
+    <button class="cat-btn" data-cat="appetizers">Appetizers</button>
+    <button class="cat-btn" data-cat="pasta">Pasta</button>
+    <button class="cat-btn" data-cat="mains">Mains</button>
+    <button class="cat-btn" data-cat="pizza">Pizza</button>
+    <button class="cat-btn" data-cat="burgers">Burgers</button>
+    <button class="cat-btn" data-cat="desserts">Desserts</button>
+  </div>
+
+  <div id="breakfast" class="menu-section menu-grid visible">
+    <div class="menu-item"><div><div class="menu-name">LaRoc Breakfast</div><div class="menu-desc">3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes</div></div><div class="menu-price">850</div></div>
+    <div class="menu-item"><div><div class="menu-name">Italian Toast</div><div class="menu-desc">French fries, sour cream, ham, cheese, peppers</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Greek Scrambled Eggs</div><div class="menu-desc">Pita, scrambled eggs, tzatziki, grilled bacon, tomatoes</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Valjevo Breakfast</div><div class="menu-desc">Cracklings, fresh cream, ajvar, crispy bacon</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name">Avocado Toast</div><div class="menu-desc">Toasted bread, guacamole, cherry tomatoes, arugula</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Breakfast for Two</div><div class="menu-desc">4 eggs, sausages, bacon, cream, ajvar, tomatoes</div></div><div class="menu-price">1,590</div></div>
+    <div class="menu-item"><div><div class="menu-name">Sweet Doughnuts</div><div class="menu-desc">Doughnuts with Nutella</div></div><div class="menu-price">690</div></div>
+    <div class="menu-item"><div><div class="menu-name">Protein Breakfast</div><div class="menu-desc">5 egg white omelet with peppers and mushrooms</div></div><div class="menu-price">790</div></div>
+  </div>
+
+  <div id="sandwiches" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Classic Sandwich</div><div class="menu-desc">Homemade ciabatta, sour cream, ham, cheese, tomatoes</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Curry Chicken Sandwich</div><div class="menu-desc">Ciabatta, mango curry sauce, grilled chicken, lettuce</div></div><div class="menu-price">800</div></div>
+    <div class="menu-item"><div><div class="menu-name">Pesto Sandwich</div><div class="menu-desc">Ciabatta, pesto, cured prosciutto, fresh mozzarella</div></div><div class="menu-price">950</div></div>
+    <div class="menu-item"><div><div class="menu-name">Spicy Sandwich</div><div class="menu-desc">Ciabatta, mayonnaise, homemade kulen sausage, cheese</div></div><div class="menu-price">920</div></div>
+    <div class="menu-item"><div><div class="menu-name">Zlatibor Sandwich</div><div class="menu-desc">Ciabatta, young cream cheese, prosciutto</div></div><div class="menu-price">1,030</div></div>
+    <div class="menu-item"><div><div class="menu-name">Tel Aviv Sandwich</div><div class="menu-desc">Ciabatta, hummus, grilled vegetables</div></div><div class="menu-price">750</div></div>
+  </div>
+
+  <div id="appetizers" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">LaRoc Platter</div><div class="menu-desc">Prosciutto, chorizo, gorgonzola, smoked cheese, olives</div></div><div class="menu-price">2,180</div></div>
+    <div class="menu-item"><div><div class="menu-name">Fried Mix</div><div class="menu-desc">Mozzarella sticks, chicken sticks, onion rings, fries</div></div><div class="menu-price">1,350</div></div>
+    <div class="menu-item"><div><div class="menu-name">Tomato Bruschetta</div><div class="menu-desc">Fresh tomatoes on toasted bread</div></div><div class="menu-price">690</div></div>
+    <div class="menu-item"><div><div class="menu-name">Greek Bouyourdi</div><div class="menu-desc">Feta cheese, olive oil, tomatoes, oregano</div></div><div class="menu-price">1,020</div></div>
+    <div class="menu-item"><div><div class="menu-name">Spring Rolls</div><div class="menu-desc">Vegetable spring rolls with sweet chili sauce</div></div><div class="menu-price">680</div></div>
+  </div>
+
+  <div id="pasta" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Penne Arrabbiata</div><div class="menu-desc">Classic spicy tomato sauce</div></div><div class="menu-price">1,140</div></div>
+    <div class="menu-item"><div><div class="menu-name">Four Cheese Chicken Penne</div><div class="menu-desc">Creamy four cheese sauce with grilled chicken</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name">Tagliatelle Bolognese</div><div class="menu-desc">Classic slow-cooked meat ragù</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name">Prosciutto Parmigiano Tagliatelle</div><div class="menu-desc">Prosciutto, parmigiano, cream sauce</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name">Steak Tagliatelle</div><div class="menu-desc">Premium steak strips with fresh pasta</div></div><div class="menu-price">1,990</div></div>
+    <div class="menu-item"><div><div class="menu-name">Shrimp Tagliatelle</div><div class="menu-desc">Fresh shrimp in Mediterranean sauce</div></div><div class="menu-price">1,890</div></div>
+  </div>
+
+  <div id="mains" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Priboj Kebabs</div><div class="menu-desc">Traditional Serbian-style kebabs</div></div><div class="menu-price">1,450</div></div>
+    <div class="menu-item"><div><div class="menu-name">BBQ Ribs</div><div class="menu-desc">Slow-cooked ribs with BBQ glaze</div></div><div class="menu-price">1,650</div></div>
+    <div class="menu-item"><div><div class="menu-name">Veal Schnitzel</div><div class="menu-desc">Breaded veal with seasonal sides</div></div><div class="menu-price">1,790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Mediterranean Chicken</div><div class="menu-desc">Herbs, olive oil, roasted vegetables</div></div><div class="menu-price">1,450</div></div>
+    <div class="menu-item"><div><div class="menu-name">Serbian Platter for Two</div><div class="menu-desc">Mixed selection of Serbian meats and sides</div></div><div class="menu-price">2,790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Steak with Arugula</div><div class="menu-desc">Grilled steak, fresh arugula, cherry tomatoes</div></div><div class="menu-price">2,350</div></div>
+    <div class="menu-item"><div><div class="menu-name">Smoked Trout</div><div class="menu-desc">Whole smoked trout with seasonal garnish</div></div><div class="menu-price">1,690</div></div>
+    <div class="menu-item"><div><div class="menu-name">Chicken Wok</div><div class="menu-desc">Wok-fried chicken with seasonal vegetables</div></div><div class="menu-price">1,450</div></div>
+  </div>
+
+  <div id="pizza" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Margherita</div><div class="menu-desc">San Marzano tomato, mozzarella, basil</div></div><div class="menu-price">1,150</div></div>
+    <div class="menu-item"><div><div class="menu-name">Capricciosa</div><div class="menu-desc">Ham, mushrooms, olives, mozzarella</div></div><div class="menu-price">1,290</div></div>
+    <div class="menu-item"><div><div class="menu-name">Diavola</div><div class="menu-desc">Spicy salami, chili, mozzarella</div></div><div class="menu-price">1,350</div></div>
+    <div class="menu-item"><div><div class="menu-name">Four Cheese Pizza</div><div class="menu-desc">Mozzarella, gorgonzola, parmesan, ricotta</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name">Serbian Pizza</div><div class="menu-desc">Local meats and traditional flavors</div></div><div class="menu-price">1,490</div></div>
+    <div class="menu-item"><div><div class="menu-name">Prosciutto & Arugula</div><div class="menu-desc">Prosciutto crudo, arugula, cherry tomatoes</div></div><div class="menu-price">1,590</div></div>
+  </div>
+
+  <div id="burgers" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Classic Burger</div><div class="menu-desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div></div><div class="menu-price">1,390</div></div>
+    <div class="menu-item"><div><div class="menu-name">BBQ Burger</div><div class="menu-desc">100% beef, cheddar, grilled bacon, BBQ sauce, fries</div></div><div class="menu-price">1,490</div></div>
+  </div>
+
+  <div id="desserts" class="menu-section menu-grid">
+    <div class="menu-item"><div><div class="menu-name">Chocolate Cake</div><div class="menu-desc">Rich dark chocolate layer cake</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name">Pistachio & Raspberry Cake</div><div class="menu-desc">Layered pistachio cream with raspberry compote</div></div><div class="menu-price">750</div></div>
+    <div class="menu-item"><div><div class="menu-name">Blueberry Cake</div><div class="menu-desc">Light sponge with fresh blueberry filling</div></div><div class="menu-price">790</div></div>
+    <div class="menu-item"><div><div class="menu-name">Sour Cherry Cheesecake</div><div class="menu-desc">New York-style with sour cherry topping</div></div><div class="menu-price">650</div></div>
+    <div class="menu-item"><div><div class="menu-name">Chocolate Dumplings</div><div class="menu-desc">Warm chocolate-filled dumplings</div></div><div class="menu-price">590</div></div>
+    <div class="menu-item"><div><div class="menu-name">Pistachio Balls</div><div class="menu-desc">Bite-size pistachio confections</div></div><div class="menu-price">570</div></div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="sec-header">
+    <span class="sec-label">What Guests Say</span>
+    <h2 class="serif">Guest Reviews</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Honestly the best breakfast in Belgrade. The LaRoc Breakfast plate is incredible — portions are generous and everything tastes homemade.</p>
+      <div class="reviewer"><div class="rev-avatar">MJ</div><div><div class="rev-name">Marija J.</div><div class="rev-date">Google Review</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.</p>
+      <div class="reviewer"><div class="rev-avatar">NS</div><div><div class="rev-name">Nikola S.</div><div class="rev-date">Google Review</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.</p>
+      <div class="reviewer"><div class="rev-avatar">AT</div><div><div class="rev-name">Ana T.</div><div class="rev-date">Google Review</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reservation" id="res">
+  <div class="res-inner">
+    <span class="sec-label">Reservations</span>
+    <h2 class="serif">Reserve Your Table</h2>
+    <p>Join us for an unforgettable dining experience. We look forward to welcoming you.</p>
+    <div class="res-form">
+      <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+381..."></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Guests</label><select><option>1 guest</option><option>2 guests</option><option>3–4 guests</option><option>5–6 guests</option><option>7+ guests</option></select></div>
+      <div class="form-group"><label>Date</label><input type="date"></div>
+      <div class="form-group"><label>Time</label><select><option>08:00</option><option>09:00</option><option>10:00</option><option>12:00</option><option>13:00</option><option>14:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option></select></div>
+      <div class="form-group full"><label>Special Requests</label><textarea placeholder="Allergies, occasion, seating preferences..."></textarea></div>
+      <button class="res-btn" onclick="this.textContent='✓ Reservation Sent!';setTimeout(()=>this.textContent='Reserve Your Table',3000)">Reserve Your Table</button>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="contact-inner">
+    <div>
+      <h2 class="serif">Find Us</h2>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div><div class="contact-label">Address</div><div class="contact-val">Mirko Sandića 1<br>11000 Belgrade, Serbia</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-phone" aria-hidden="true"></i></div>
+        <div><div class="contact-label">Phone</div><div class="contact-val">+381 66 428 03 0</div></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-icon"><i class="ti ti-clock" aria-hidden="true"></i></div>
+        <div><div class="contact-label">Hours</div><div class="contact-val">Monday – Sunday<br>08:00 – 22:00</div></div>
+      </div>
+      <div class="contact-actions">
+        <button class="action-btn"><i class="ti ti-phone" aria-hidden="true"></i> Call</button>
+        <button class="action-btn"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</button>
+        <button class="action-btn"><i class="ti ti-navigation" aria-hidden="true"></i> Directions</button>
+      </div>
+    </div>
+    <div class="map-placeholder" onclick="openLink('https://maps.google.com/?q=Mirko+Sandica+1+Belgrade+Serbia')">
+      <i class="ti ti-map-2 map-icon" aria-hidden="true"></i>
+      <div class="map-text">View on Google Maps</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LA ROC</div>
+  <div class="footer-sub">Belgrade · Est. 2018</div>
+  <div class="footer-line">© 2026 LaRoc Beograd. All rights reserved. · Mirko Sandića 1, Belgrade</div>
+</footer>
+
+<script>
+document.getElementById('cats').addEventListener('click',function(e){
+  var btn=e.target.closest('.cat-btn');
+  if(!btn)return;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  var cat=btn.dataset.cat;
+  document.querySelectorAll('.menu-section').forEach(s=>{
+    s.classList.toggle('visible',s.id===cat);
+  });
+});
+</script>
