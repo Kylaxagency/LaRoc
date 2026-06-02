@@ -135,6 +135,76 @@
   .menu-section{display:none}
   .menu-section.visible{display:grid}
 
+  /* ── SCROLL REVEAL ── */
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:none}
+  .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+  .reveal-left.visible{opacity:1;transform:none}
+  .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+  .reveal-right.visible{opacity:1;transform:none}
+
+  /* ── HERO ANIMATION ── */
+  .hero-badge{animation:fadeDown .8s ease both}
+  .hero h1{animation:fadeDown .9s .15s ease both}
+  .hero p{animation:fadeDown .9s .25s ease both}
+  .hero-btns{animation:fadeDown .9s .35s ease both}
+  .hero-divider{animation:fadeDown .9s .45s ease both}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+
+  /* ── FEATURE CARDS 3D ── */
+  .feat-card{transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .2s;transform-style:preserve-3d}
+  .feat-card:hover{transform:translateY(-8px) scale(1.03);background:#161410;z-index:2}
+  .feat-icon{transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+  .feat-card:hover .feat-icon{transform:scale(1.3) rotate(-6deg)}
+
+  /* ── GALLERY ── */
+  .gallery{background:#0a0a0a;padding:64px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  .gallery-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .dish-card{position:relative;overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .15s ease,box-shadow .3s ease;aspect-ratio:4/3}
+  .dish-card:nth-child(1){grid-column:span 2}
+  .dish-card:nth-child(2){grid-column:span 2}
+  .dish-card:nth-child(3){grid-column:span 2}
+  .dish-card:nth-child(4){grid-column:span 3}
+  .dish-card:nth-child(5){grid-column:span 3}
+  .dish-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1),filter .4s ease;display:block;filter:brightness(.85) saturate(1.1)}
+  .dish-card:hover img{transform:scale(1.1);filter:brightness(1) saturate(1.2)}
+  .dish-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.88) 60%);transform:translateY(12px);opacity:0;transition:opacity .35s ease,transform .35s ease}
+  .dish-card:hover .dish-overlay{opacity:1;transform:none}
+  .dish-name{font-family:'Playfair Display',serif;font-size:15px;color:#f0e8d0;margin-bottom:3px;letter-spacing:.5px}
+  .dish-cat{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+  .dish-card::before{content:'';position:absolute;inset:0;border:1px solid rgba(201,168,76,0);transition:border-color .3s ease;z-index:2;pointer-events:none}
+  .dish-card:hover::before{border-color:rgba(201,168,76,.35)}
+  .dish-card .dish-shine{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.06) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+  .dish-card:hover .dish-shine{opacity:1}
+
+  /* ── ABOUT IMAGE ── */
+  .about-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .about-img:hover img{transform:scale(1.04)}
+  .about-img{overflow:hidden;transition:box-shadow .3s ease}
+  .about-img:hover{box-shadow:0 0 0 1px rgba(201,168,76,.4)}
+
+  /* ── MENU ITEM 3D ── */
+  .menu-item{transition:background .2s,transform .2s,box-shadow .2s}
+  .menu-item:hover{background:#161410;transform:translateX(4px);box-shadow:-3px 0 0 var(--gold)}
+
+  /* ── REVIEW CARD 3D ── */
+  .review-card{transition:transform .35s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .3s}
+  .review-card:hover{transform:translateY(-8px) scale(1.02);border-color:rgba(201,168,76,.3);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+
+  /* ── STAT NUMBER PULSE ── */
+  @keyframes statPop{0%{transform:scale(.8);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+  .stat-n.animated{animation:statPop .6s cubic-bezier(.34,1.56,.64,1) both}
+
+  /* ── HERO PARALLAX LAYER ── */
+  .hero-inner{position:relative;z-index:1}
+  .hero-glow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);pointer-events:none;transition:transform .1s linear;top:50%;left:50%;transform:translate(-50%,-50%)}
+
+  @media(max-width:600px){
+    .gallery-grid{grid-template-columns:1fr 1fr}
+    .dish-card:nth-child(n){grid-column:span 1}
+    .dish-card:nth-child(3){grid-column:span 2}
+  }
+
   @media(max-width:600px){
     .about-inner,.contact-inner{grid-template-columns:1fr}
     .menu-grid,.reviews-grid{grid-template-columns:1fr}
@@ -166,8 +236,9 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div>
+<section class="hero" id="hero">
+  <div class="hero-glow" id="heroGlow"></div>
+  <div class="hero-inner">
     <div class="hero-badge" data-i18n="hero.badge">Belgrade · Est. 2018</div>
     <h1 class="serif" data-i18n-html="hero.h1">Where Great Food Becomes <em>an Experience</em></h1>
     <p data-i18n="hero.sub">Breakfast, premium grill, artisan pizza, fresh pasta, and Serbian specialties in the heart of Belgrade.</p>
@@ -179,6 +250,7 @@
     <div class="hero-divider"><span data-i18n="hero.hours">Mon – Sat · 08:00 – 23:00 &nbsp;·&nbsp; Sun Closed</span></div>
   </div>
 </section>
+
 
 <!-- FEATURES -->
 <section class="features">
@@ -192,14 +264,63 @@
   </div>
 </section>
 
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="sec-header reveal">
+    <span class="sec-label" data-i18n="gal.label">From Our Kitchen</span>
+    <h2 class="serif" data-i18n="gal.h2">Signature Dishes</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="dish-card reveal" style="transition-delay:.05s">
+      <img src="images/cevapi.jpg" alt="Priboj Kebabs" loading="lazy">
+      <div class="dish-shine"></div>
+      <div class="dish-overlay">
+        <div class="dish-name" data-i18n="gal.d1">Priboj Kebabs</div>
+        <div class="dish-cat" data-i18n="gal.d1.cat">Mains</div>
+      </div>
+    </div>
+    <div class="dish-card reveal" style="transition-delay:.12s">
+      <img src="images/platter.jpg" alt="LaRoc Platter" loading="lazy">
+      <div class="dish-shine"></div>
+      <div class="dish-overlay">
+        <div class="dish-name" data-i18n="gal.d2">LaRoc Platter</div>
+        <div class="dish-cat" data-i18n="gal.d2.cat">Appetizers</div>
+      </div>
+    </div>
+    <div class="dish-card reveal" style="transition-delay:.19s">
+      <img src="images/tagliatelle.jpg" alt="Steak Tagliatelle" loading="lazy">
+      <div class="dish-shine"></div>
+      <div class="dish-overlay">
+        <div class="dish-name" data-i18n="gal.d3">Steak Tagliatelle</div>
+        <div class="dish-cat" data-i18n="gal.d3.cat">Pasta</div>
+      </div>
+    </div>
+    <div class="dish-card reveal" style="transition-delay:.26s">
+      <img src="images/sandwich.jpg" alt="Zlatibor Sandwich" loading="lazy">
+      <div class="dish-shine"></div>
+      <div class="dish-overlay">
+        <div class="dish-name" data-i18n="gal.d4">Zlatibor Sandwich</div>
+        <div class="dish-cat" data-i18n="gal.d4.cat">Sandwiches</div>
+      </div>
+    </div>
+    <div class="dish-card reveal" style="transition-delay:.33s">
+      <img src="images/pistachio-balls.jpg" alt="Pistachio Balls" loading="lazy">
+      <div class="dish-shine"></div>
+      <div class="dish-overlay">
+        <div class="dish-name" data-i18n="gal.d5">Pistachio Balls</div>
+        <div class="dish-cat" data-i18n="gal.d5.cat">Desserts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="about-img">
-      <div class="photo-placeholder">🍽</div>
-      <div class="photo-label" data-i18n="about.photo">Restaurant Photography</div>
+    <div class="about-img reveal-left">
+      <img src="images/platter.jpg" alt="LaRoc Platter — signature charcuterie board">
     </div>
-    <div>
+    <div class="reveal-right">
       <span class="about-label" data-i18n="about.label">Our Story</span>
       <h2 class="serif" data-i18n="about.h2">A Passion for Food, A Love for Belgrade</h2>
       <p data-i18n="about.p1">LaRoc is Belgrade's destination for those who believe that dining is more than just a meal — it's a moment to be savoured. Nestled in the heart of the city at Mirka Sandića 1, we welcome guests into a warm, sophisticated space where great food, genuine hospitality, and an unhurried atmosphere come together seamlessly.</p>
@@ -215,7 +336,7 @@
 
 <!-- MENU -->
 <section class="menu-sec" id="menu">
-  <div class="sec-header">
+  <div class="sec-header reveal">
     <span class="sec-label" data-i18n="menu.label">Explore</span>
     <h2 class="serif" data-i18n="menu.h2">Our Menu</h2>
   </div>
@@ -312,22 +433,22 @@
 
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
-  <div class="sec-header">
+  <div class="sec-header reveal">
     <span class="sec-label" data-i18n="rev.label">What Guests Say</span>
     <h2 class="serif" data-i18n="rev.h2">Guest Reviews</h2>
   </div>
   <div class="reviews-grid">
-    <div class="review-card">
+    <div class="review-card reveal" style="transition-delay:.05s">
       <div class="stars">★★★★★</div>
       <p class="review-text" data-i18n="rev.r1">Honestly the best breakfast in Belgrade. The LaRoc Breakfast plate is incredible — portions are generous and everything tastes homemade.</p>
       <div class="reviewer"><div class="rev-avatar">MJ</div><div><div class="rev-name">Marija J.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal" style="transition-delay:.15s">
       <div class="stars">★★★★★</div>
       <p class="review-text" data-i18n="rev.r2">Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.</p>
       <div class="reviewer"><div class="rev-avatar">NS</div><div><div class="rev-name">Nikola S.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
-    <div class="review-card">
+    <div class="review-card reveal" style="transition-delay:.25s">
       <div class="stars">★★★★★</div>
       <p class="review-text" data-i18n="rev.r3">The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.</p>
       <div class="reviewer"><div class="rev-avatar">AT</div><div><div class="rev-name">Ana T.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
@@ -474,6 +595,14 @@ var T = {
     'about.stat1': 'Years Serving',
     'about.stat2': 'Menu Items',
     'about.stat3': 'Guest Rating',
+
+    'gal.label': 'From Our Kitchen',
+    'gal.h2': 'Signature Dishes',
+    'gal.d1': 'Priboj Kebabs', 'gal.d1.cat': 'Mains',
+    'gal.d2': 'LaRoc Platter', 'gal.d2.cat': 'Appetizers',
+    'gal.d3': 'Steak Tagliatelle', 'gal.d3.cat': 'Pasta',
+    'gal.d4': 'Zlatibor Sandwich', 'gal.d4.cat': 'Sandwiches',
+    'gal.d5': 'Pistachio Balls', 'gal.d5.cat': 'Desserts',
 
     'menu.label': 'Explore',
     'menu.h2': 'Our Menu',
@@ -677,6 +806,14 @@ var T = {
     'about.stat1': 'Godine Rada',
     'about.stat2': 'Stavke Menija',
     'about.stat3': 'Ocena Gostiju',
+
+    'gal.label': 'Iz Naše Kuhinje',
+    'gal.h2': 'Specijaliteti',
+    'gal.d1': 'Pribojski Ćevapi', 'gal.d1.cat': 'Glavna Jela',
+    'gal.d2': 'LaRoc Tanjir', 'gal.d2.cat': 'Predjela',
+    'gal.d3': 'Talijatele s Biftekomom', 'gal.d3.cat': 'Pasta',
+    'gal.d4': 'Zlatibor Sendvič', 'gal.d4.cat': 'Sendviči',
+    'gal.d5': 'Pistacija Kuglice', 'gal.d5.cat': 'Deserti',
 
     'menu.label': 'Istražite',
     'menu.h2': 'Naš Meni',
@@ -901,6 +1038,86 @@ document.getElementById('res-btn').addEventListener('click', function() {
   setTimeout(function() {
     btn.textContent = T[currentLang]['res.btn'];
   }, 3000);
+});
+
+// ── Scroll Reveal (IntersectionObserver) ───────────────────────────────────────
+(function() {
+  var opts = { threshold: 0.12 };
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, opts);
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) {
+    io.observe(el);
+  });
+})();
+
+// ── Stat Counter Animation ─────────────────────────────────────────────────────
+(function() {
+  var stats = document.querySelectorAll('.stat-n');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add('animated');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  stats.forEach(function(s) { io.observe(s); });
+})();
+
+// ── 3D Dish Card Tilt ─────────────────────────────────────────────────────────
+document.querySelectorAll('.dish-card').forEach(function(card) {
+  card.addEventListener('mousemove', function(e) {
+    var r = card.getBoundingClientRect();
+    var x = e.clientX - r.left, y = e.clientY - r.top;
+    var cx = r.width / 2, cy = r.height / 2;
+    var rotX = ((y - cy) / cy) * -9;
+    var rotY = ((x - cx) / cx) * 9;
+    card.style.transform = 'perspective(700px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) scale(1.04)';
+    card.style.boxShadow = '0 24px 48px rgba(0,0,0,.55), 0 0 0 1px rgba(201,168,76,.2)';
+    var shine = card.querySelector('.dish-shine');
+    if (shine) { shine.style.setProperty('--mx', (x/r.width*100)+'%'); shine.style.setProperty('--my', (y/r.height*100)+'%'); }
+  });
+  card.addEventListener('mouseleave', function() {
+    card.style.transition = 'transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s ease';
+    card.style.transform = '';
+    card.style.boxShadow = '';
+    setTimeout(function() { card.style.transition = 'transform .15s ease, box-shadow .3s ease'; }, 550);
+  });
+  card.addEventListener('mouseenter', function() {
+    card.style.transition = 'transform .12s ease, box-shadow .12s ease';
+  });
+});
+
+// ── Hero Mouse Parallax Glow ───────────────────────────────────────────────────
+(function() {
+  var hero = document.getElementById('hero');
+  var glow = document.getElementById('heroGlow');
+  if (!hero || !glow) return;
+  hero.addEventListener('mousemove', function(e) {
+    var r = hero.getBoundingClientRect();
+    var x = ((e.clientX - r.left) / r.width  - 0.5) * 60;
+    var y = ((e.clientY - r.top)  / r.height - 0.5) * 40;
+    glow.style.transform = 'translate(calc(-50% + '+x+'px), calc(-50% + '+y+'px))';
+  });
+  hero.addEventListener('mouseleave', function() {
+    glow.style.transform = 'translate(-50%, -50%)';
+  });
+})();
+
+// ── Feature Card 3D Hover ─────────────────────────────────────────────────────
+document.querySelectorAll('.feat-card').forEach(function(card) {
+  card.addEventListener('mousemove', function(e) {
+    var r = card.getBoundingClientRect();
+    var rotY = ((e.clientX - r.left) / r.width - 0.5) * 14;
+    var rotX = ((e.clientY - r.top)  / r.height - 0.5) * -10;
+    card.style.transform = 'perspective(500px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-8px) scale(1.03)';
+  });
+  card.addEventListener('mouseleave', function() {
+    card.style.transform = '';
+  });
 });
 </script>
 </body>
