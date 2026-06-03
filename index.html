@@ -208,45 +208,6 @@
   .review-cta p{font-size:13px;color:#6a5a40;margin-bottom:14px}
   .btn-google-review{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:13px 26px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;text-decoration:none;transition:all .2s;border-radius:2px}
   .btn-google-review:hover{background:rgba(201,168,76,0.08);border-color:var(--gold);transform:translateY(-1px)}
-  /* ── QR CODE BLOCK ── */
-  .review-qr-block{
-    max-width:560px;margin:24px auto 0;
-    display:flex;align-items:center;gap:32px;
-    background:linear-gradient(160deg,#0e0c07 0%,#0a0800 100%);
-    border:1px solid rgba(201,168,76,0.15);
-    padding:32px 36px;
-  }
-  .qr-img-wrap{
-    flex-shrink:0;
-    width:120px;height:120px;
-    background:#fff;
-    padding:8px;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 0 0 1px rgba(201,168,76,0.2),0 4px 20px rgba(0,0,0,0.5);
-  }
-  .qr-img-wrap img{width:100%;height:100%;display:block}
-  .qr-text{flex:1}
-  .qr-title{
-    font-family:'Playfair Display',serif;font-size:17px;
-    color:#f0e8d0;font-weight:400;margin-bottom:8px;line-height:1.3;
-  }
-  .qr-sub{
-    font-size:11px;color:#7a6a50;line-height:1.7;margin-bottom:16px;
-  }
-  .qr-scan-hint{
-    display:inline-flex;align-items:center;gap:6px;
-    font-size:9px;letter-spacing:2px;text-transform:uppercase;
-    color:rgba(201,168,76,0.45);font-family:'Inter',sans-serif;
-  }
-  .qr-scan-hint::before{
-    content:'';display:inline-block;width:16px;height:1px;
-    background:rgba(201,168,76,0.3);
-  }
-  @media(max-width:600px){
-    .review-qr-block{flex-direction:column;text-align:center;padding:28px 24px}
-    .qr-scan-hint{justify-content:center}
-    .qr-scan-hint::before{display:none}
-  }
   /* ── REVIEW FLOW WIDGET ── */
   .review-flow{
     max-width:560px;margin:56px auto 0;
@@ -760,18 +721,6 @@
       </a>
     </div>
   </div>
-
-  <!-- QR Code block -->
-  <div class="review-qr-block reveal">
-    <div class="qr-img-wrap">
-      <img id="qrCodeImg" alt="QR code - LaRoc Google Reviews" src="" loading="lazy">
-    </div>
-    <div class="qr-text">
-      <p class="qr-title" data-i18n="qr.title">Scan to leave a review from your table</p>
-      <p class="qr-sub" data-i18n="qr.sub">Open your camera, point it at the code and you will be taken directly to our Google review page. Takes less than 30 seconds.</p>
-      <span class="qr-scan-hint" data-i18n="qr.hint">Point your camera here</span>
-    </div>
-  </div>
 </section>
 
 <!-- RESERVATION -->
@@ -1077,9 +1026,6 @@ var T = {
     'rf.low.title':'Thank you for your feedback.',
     'rf.low.sub':  'We are sorry your visit did not meet your expectations. We would love the chance to make it right — please reach out to us directly.',
     'rf.low.btn':  'Contact Us Directly',
-    'qr.title': 'Scan to leave a review from your table',
-    'qr.sub':   'Open your camera, point it at the code and you will be taken directly to our Google review page. Takes less than 30 seconds.',
-    'qr.hint':  'Point your camera here',
 
     // Reservation
     'res.label': 'Reservations',
@@ -1306,9 +1252,6 @@ var T = {
     'rf.low.title':'Hvala na povratnoj informaciji.',
     'rf.low.sub':  'Žao nam je što vaš poseta nije ispunila vaša očekivanja. Voleli bismo da to ispravimo — molimo vas kontaktirajte nas direktno.',
     'rf.low.btn':  'Kontaktirajte Nas',
-    'qr.title': 'Skenirajte da ostavite recenziju sa stola',
-    'qr.sub':   'Otvorite kameru, uperite je u kod i bićete odvedeni direktno na našu Google stranicu za recenzije. Traje manje od 30 sekundi.',
-    'qr.hint':  'Uperite kameru ovde',
 
     // Reservation
     'res.label': 'Rezervacije',
@@ -1519,14 +1462,6 @@ function setLang(lang) {
 })();
 
 
-// ── QR Code Generator ────────────────────────────────────────────────────────
-(function() {
-  var img = document.getElementById('qrCodeImg');
-  if (!img) return;
-  var url = 'https://www.google.es/maps/place/Restoran+LaRoc+Beograd/@44.7849156,20.4949785,15z/data=!4m12!1m3!11m2!2szuGI1ELKLrXrV9261VTENA!3e3!3m7!1s0x475a712e14cec20f:0xe2214c37744cedb6!8m2!3d44.7849156!4d20.5140329!9m1!1b1!16s%2Fg%2F11ybvf_n54?entry=ttu';
-  var encoded = encodeURIComponent(url);
-  img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&color=000000&bgcolor=ffffff&data=' + encoded;
-})();
 
 // ── Review Flow Widget ────────────────────────────────────────────────────────
 (function() {
