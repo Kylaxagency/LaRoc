@@ -92,16 +92,26 @@
   .sec-header{text-align:center;margin-bottom:36px}
   .sec-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
   .sec-header h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:#f0e8d0}
-  .menu-cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
-  .cat-btn{background:transparent;border:1px solid rgba(201,168,76,0.25);color:#8a7a60;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-  .cat-btn.active,.cat-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06)}
-  .menu-grid{max-width:840px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,0.08)}
+  .menu-cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
+  .cat-btn{background:transparent;border:1px solid rgba(201,168,76,0.22);color:#7a6a50;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s,transform .1s;border-radius:2px;position:relative;overflow:hidden}
+  .cat-btn::after{content:'';position:absolute;inset:0;background:rgba(201,168,76,0.06);opacity:0;transition:opacity .2s}
+  .cat-btn:hover::after{opacity:1}
+  .cat-btn:active{transform:translateY(2px)}
+  .cat-btn.active{border-color:var(--gold);color:#111;background:var(--gold);font-weight:600}
+  .cat-btn.active::after{display:none}
+  .menu-grid{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;perspective:1200px}
   .menu-item:last-child:nth-child(odd){grid-column:1/-1;justify-content:center;text-align:center}
-  .menu-item{background:#111;padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;transition:background .2s}
-  .menu-item:hover{background:#161410}
-  .menu-name{font-size:13px;color:#d8c89a;font-weight:400;margin-bottom:4px}
-  .menu-desc{font-size:11px;color:#5a5040;line-height:1.5}
-  .menu-price{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold);white-space:nowrap;flex-shrink:0}
+  .menu-item{background:linear-gradient(145deg,#141210 0%,#0f0d0b 100%);border:1px solid rgba(201,168,76,0.1);padding:22px 22px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .3s;transform-style:preserve-3d;border-radius:2px}
+  .menu-item::before{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);transition:width .55s cubic-bezier(.22,1,.36,1);z-index:1}
+  .menu-item::after{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+  .menu-item:hover::before{width:100%}
+  .menu-item:hover::after{opacity:1}
+  .menu-item:hover{box-shadow:0 18px 42px rgba(0,0,0,.55),0 0 0 1px rgba(201,168,76,.22);border-color:rgba(201,168,76,.22)}
+  .menu-name{font-size:14px;font-family:'Playfair Display',serif;color:#e8dfc8;font-weight:400;margin-bottom:7px;letter-spacing:.3px;line-height:1.3}
+  .menu-desc{font-size:11px;color:#4e4438;line-height:1.65}
+  .menu-price{font-family:'Playfair Display',serif;font-size:17px;color:var(--gold);white-space:nowrap;flex-shrink:0;padding-top:1px;letter-spacing:.5px}
+  @keyframes cardIn{from{opacity:0;transform:perspective(900px) rotateX(14deg) translateY(28px)}to{opacity:1;transform:none}}
+  .menu-item.card-in{animation:cardIn .5s cubic-bezier(.22,1,.36,1) both}
 
   /* REVIEWS */
   .reviews{background:#0f0f0f;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
@@ -1116,6 +1126,35 @@ document.getElementById('cats').addEventListener('click', function(e) {
   document.querySelectorAll('.menu-section').forEach(function(s) {
     s.classList.toggle('visible', s.id === cat);
   });
+  // Stagger card-in animation on newly visible items
+  var section = document.getElementById(cat);
+  if (section) {
+    var items = section.querySelectorAll('.menu-item');
+    items.forEach(function(item) { item.classList.remove('card-in'); });
+    requestAnimationFrame(function() {
+      items.forEach(function(item, i) {
+        setTimeout(function() { item.classList.add('card-in'); }, i * 55);
+      });
+    });
+  }
+});
+
+// ── Menu Item 3D Tilt ─────────────────────────────────────────────────────────
+document.querySelectorAll('.menu-item').forEach(function(item) {
+  item.addEventListener('mousemove', function(e) {
+    var r = item.getBoundingClientRect();
+    var rotY = ((e.clientX - r.left) / r.width  - 0.5) * 10;
+    var rotX = ((e.clientY - r.top)  / r.height - 0.5) * -6;
+    item.style.transform = 'perspective(700px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-4px)';
+  });
+  item.addEventListener('mouseleave', function() {
+    item.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .3s';
+    item.style.transform = '';
+    setTimeout(function() { item.style.transition = ''; }, 500);
+  });
+  item.addEventListener('mouseenter', function() {
+    item.style.transition = 'transform .12s ease, box-shadow .35s, border-color .3s';
+  });
 });
 
 // ── Reservation Button ─────────────────────────────────────────────────────────
@@ -1136,6 +1175,16 @@ document.getElementById('res-btn').addEventListener('click', function() {
     if (success) success.style.display = 'none';
   }, 5000);
 });
+
+// Animate default visible menu items on load
+(function() {
+  var defaultSection = document.querySelector('.menu-section.visible');
+  if (defaultSection) {
+    defaultSection.querySelectorAll('.menu-item').forEach(function(item, i) {
+      setTimeout(function() { item.classList.add('card-in'); }, 200 + i * 55);
+    });
+  }
+})();
 
 // ── Scroll Reveal (IntersectionObserver) ───────────────────────────────────────
 (function() {
