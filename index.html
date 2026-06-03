@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LaRoc Beograd — Restaurant</title>
+  <title>LaRoc Beograd — Caffe Restaurant | Mirka Sandića 1</title>
+  <meta name="description" content="LaRoc is Belgrade's premium caffe restaurant at Mirka Sandića 1. Breakfast, artisan pizza, fresh pasta, premium grill and Serbian specialties. ⭐ 4.9 on Google · 146 reviews. Open Mon–Sat 08:00–23:00.">
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="LaRoc Beograd — Caffe Restaurant">
+  <meta property="og:description" content="Premium restaurant in Belgrade. Breakfast, pizza, pasta, grill & Serbian specialties. ⭐ 4.9 · 146 Google reviews. Mirka Sandića 1.">
+  <meta property="og:image" content="images/logo.png">
+  <meta property="og:locale" content="en_RS">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LaRoc Beograd — Caffe Restaurant">
+  <meta name="twitter:description" content="Premium restaurant at Mirka Sandića 1, Belgrade. ⭐ 4.9 · 146 Google reviews.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"LaRoc Beograd","image":"images/logo.png","telephone":"+38166646 4209","address":{"@type":"PostalAddress","streetAddress":"Mirka Sandića 1","addressLocality":"Belgrade","postalCode":"11000","addressCountry":"RS"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"23:00"}],"servesCuisine":["Serbian","Italian","Mediterranean"],"priceRange":"1000–1500 RSD","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"146"}}</script>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   :root{--gold:#C9A84C;--black:#111;--dark:#1a1a1a;--burg:#7A1F1F;--white:#fff;--gray:#888}
@@ -39,13 +49,19 @@
   .hero h1 em{color:var(--gold);font-style:italic}
   .hero p{font-size:14px;color:#a09070;line-height:1.7;max-width:420px;margin:0 auto 32px;letter-spacing:.3px}
   .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .btn-primary{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:13px 26px;cursor:pointer;font-weight:500;font-family:'Inter',sans-serif;transition:opacity .2s}
-  .btn-primary:hover{opacity:.85}
-  .btn-outline{background:transparent;color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(201,168,76,0.5);padding:12px 26px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-  .btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.06)}
+  .btn-primary{background:var(--gold);color:#111;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:none;padding:14px 30px;cursor:pointer;font-weight:600;font-family:'Inter',sans-serif;transition:background .2s,transform .15s;border-radius:2px}
+  .btn-primary:hover{background:#dab95a;transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(201,168,76,0.5);padding:13px 30px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;border-radius:2px}
+  .btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,0.08);transform:translateY(-1px)}
   .hero-divider{display:flex;align-items:center;gap:16px;margin-top:36px;justify-content:center}
   .hero-divider span{color:#6a5a3a;font-size:11px;letter-spacing:2px;text-transform:uppercase}
   .hero-divider::before,.hero-divider::after{content:'';height:1px;width:60px;background:rgba(201,168,76,0.25)}
+  .hero-trust{display:flex;align-items:center;justify-content:center;gap:0;margin:28px auto 0;max-width:480px;border:1px solid rgba(201,168,76,0.2);background:rgba(201,168,76,0.04);animation:fadeDown .9s .5s ease both}
+  .trust-item{flex:1;text-align:center;padding:14px 8px}
+  .trust-item+.trust-item{border-left:1px solid rgba(201,168,76,0.15)}
+  .trust-val{font-family:'Playfair Display',serif;font-size:19px;color:#f0e8d0;display:block;line-height:1.2}
+  .trust-star{color:var(--gold);margin-right:2px}
+  .trust-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6a5a40;display:block;margin-top:3px}
 
   /* FEATURES */
   .features{background:#111;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
@@ -97,6 +113,28 @@
   .rev-avatar{width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,0.15);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);font-weight:500;flex-shrink:0}
   .rev-name{font-size:12px;color:#c8bfa0;font-weight:500}
   .rev-date{font-size:10px;color:#4a4030}
+  .rating-summary{text-align:center;margin-bottom:36px;padding:28px;border:1px solid rgba(201,168,76,0.15);max-width:320px;margin:0 auto 36px}
+  .rating-num{font-size:52px;color:#f0e8d0;line-height:1;display:block}
+  .rating-stars{color:var(--gold);font-size:18px;letter-spacing:3px;margin:6px 0}
+  .rating-count{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6a5a40}
+  .review-cta{text-align:center;margin-top:36px}
+  .review-cta p{font-size:13px;color:#6a5a40;margin-bottom:14px}
+  .btn-google-review{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:13px 26px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;text-decoration:none;transition:all .2s;border-radius:2px}
+  .btn-google-review:hover{background:rgba(201,168,76,0.08);border-color:var(--gold);transform:translateY(-1px)}
+  /* LIGHTBOX */
+  #lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.95);align-items:center;justify-content:center}
+  #lightbox.open{display:flex}
+  #lb-img{max-width:88vw;max-height:82vh;object-fit:contain;box-shadow:0 0 80px rgba(0,0,0,.8)}
+  #lb-close{position:absolute;top:18px;right:24px;background:none;border:none;color:var(--gold);font-size:36px;cursor:pointer;line-height:1;opacity:.8;transition:opacity .2s}
+  #lb-close:hover{opacity:1}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:24px;width:48px;height:48px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+  .lb-nav:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
+  #lb-prev{left:20px}
+  #lb-next{right:20px}
+  #lb-caption{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;color:var(--gold);font-size:15px;letter-spacing:1px}
+  /* FORM FEEDBACK */
+  .form-group input:invalid:not(:placeholder-shown),.form-group select:invalid:not(:placeholder-shown){border-color:rgba(180,60,60,.5)}
+  .res-success{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:14px;text-align:center;font-size:13px;letter-spacing:.5px;margin-top:8px;display:none}
 
   /* RESERVATION */
   .reservation{background:#111;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
@@ -251,7 +289,12 @@
       <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" data-i18n="hero.btn2">View Menu</button>
       <button class="btn-outline" data-i18n="hero.btn3">Order Online</button>
     </div>
-    <div class="hero-divider"><span data-i18n="hero.hours">Mon – Sat · 08:00 – 23:00 &nbsp;·&nbsp; Sun Closed</span></div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-val"><span class="trust-star">★</span>4.9</span><span class="trust-label" data-i18n="trust.rating">Google Rating</span></div>
+      <div class="trust-item"><span class="trust-val">146</span><span class="trust-label" data-i18n="trust.reviews">Reviews</span></div>
+      <div class="trust-item"><span class="trust-val">1 000 – 1 500</span><span class="trust-label" data-i18n="trust.price">RSD avg. price</span></div>
+    </div>
+    <div class="hero-divider" style="margin-top:24px"><span data-i18n="hero.hours">Mon – Sat · 08:00 – 23:00 &nbsp;·&nbsp; Sun Closed</span></div>
   </div>
 </section>
 
@@ -333,7 +376,7 @@
       <div class="about-stats">
         <div><span class="stat-n gold">8+</span><span class="stat-l" data-i18n="about.stat1">Years Serving</span></div>
         <div><span class="stat-n gold">50+</span><span class="stat-l" data-i18n="about.stat2">Menu Items</span></div>
-        <div><span class="stat-n gold">★4.8</span><span class="stat-l" data-i18n="about.stat3">Guest Rating</span></div>
+        <div><span class="stat-n gold">★4.9</span><span class="stat-l" data-i18n="about.stat3">Google Rating</span></div>
       </div>
     </div>
   </div>
@@ -442,6 +485,11 @@
     <span class="sec-label" data-i18n="rev.label">What Guests Say</span>
     <h2 class="serif" data-i18n="rev.h2">Guest Reviews</h2>
   </div>
+  <div class="rating-summary reveal">
+    <span class="rating-num serif">4.9</span>
+    <div class="rating-stars">★★★★★</div>
+    <span class="rating-count" data-i18n="rev.count">Based on 146 Google Reviews</span>
+  </div>
   <div class="reviews-grid">
     <div class="review-card reveal" style="transition-delay:.05s">
       <div class="stars">★★★★★</div>
@@ -459,6 +507,10 @@
       <div class="reviewer"><div class="rev-avatar">AT</div><div><div class="rev-name">Ana T.</div><div class="rev-date" data-i18n="rev.source">Google Review</div></div></div>
     </div>
   </div>
+  <div class="review-cta reveal">
+    <p data-i18n="rev.cta.p">Enjoyed your visit? Your review helps others discover LaRoc.</p>
+    <a class="btn-google-review" href="https://www.google.com/maps/search/?api=1&query=LaRoc+Beograd+Mirka+Sandi%C4%87a+1+Belgrade" target="_blank" rel="noopener noreferrer" data-i18n="rev.cta.btn">⭐ Leave a Google Review</a>
+  </div>
 </section>
 
 <!-- RESERVATION -->
@@ -470,11 +522,11 @@
     <div class="res-form">
       <div class="form-group">
         <label data-i18n="res.name">Full Name</label>
-        <input type="text" data-i18n-placeholder="res.name.ph">
+        <input type="text" data-i18n-placeholder="res.name.ph" required>
       </div>
       <div class="form-group">
         <label data-i18n="res.phone">Phone</label>
-        <input type="tel" placeholder="+381...">
+        <input type="tel" placeholder="+381..." required>
       </div>
       <div class="form-group">
         <label data-i18n="res.email">Email</label>
@@ -492,7 +544,7 @@
       </div>
       <div class="form-group">
         <label data-i18n="res.date">Date</label>
-        <input type="date">
+        <input type="date" required>
       </div>
       <div class="form-group">
         <label data-i18n="res.time">Time</label>
@@ -508,6 +560,7 @@
         <textarea data-i18n-placeholder="res.special.ph"></textarea>
       </div>
       <button class="res-btn" id="res-btn" data-i18n="res.btn">Reserve Your Table</button>
+      <div class="res-success full" id="res-success" data-i18n="res.success">✓ Thank you! Your reservation request has been received. We will confirm by phone.</div>
     </div>
   </div>
 </section>
@@ -543,6 +596,9 @@
         <button class="action-btn" onclick="window.location.href='https://wa.me/381666464209'">💬 WhatsApp</button>
         <button class="action-btn" onclick="window.open('https://maps.google.com/?q=Mirka+Sandica+1+Belgrade+Serbia')">🧭 <span data-i18n="contact.directions">Directions</span></button>
       </div>
+      <div style="margin-top:12px">
+        <a class="btn-google-review" style="width:100%;justify-content:center;box-sizing:border-box" href="https://www.google.com/maps/search/?api=1&query=LaRoc+Beograd+Mirka+Sandi%C4%87a+1+Belgrade" target="_blank" rel="noopener noreferrer" data-i18n="rev.cta.btn">⭐ Leave a Google Review</a>
+      </div>
     </div>
     <iframe
       class="map-frame"
@@ -561,6 +617,15 @@
   <div class="footer-line" data-i18n="footer.line">© 2026 LaRoc Beograd. All rights reserved. · Mirka Sandića 1, Belgrade</div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-nav" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img id="lb-img" alt="">
+  <button class="lb-nav" id="lb-next" aria-label="Next">&#8250;</button>
+  <div id="lb-caption"></div>
+</div>
+
 <script>
 // ── Translations ──────────────────────────────────────────────────────────────
 var T = {
@@ -578,6 +643,9 @@ var T = {
     'hero.btn2': 'View Menu',
     'hero.btn3': 'Order Online',
     'hero.hours': 'Mon – Sat · 08:00 – 23:00  ·  Sun Closed',
+    'trust.rating': 'Google Rating',
+    'trust.reviews': 'Reviews',
+    'trust.price': 'RSD avg. price',
 
     'feat.breakfast.title': 'Breakfast',
     'feat.breakfast.sub': 'Served daily',
@@ -599,7 +667,7 @@ var T = {
     'about.p2': 'From our celebrated LaRoc Breakfast and stone-baked artisan pizzas to premium grill cuts, hand-rolled fresh pasta, and indulgent desserts, every dish is crafted daily using quality ingredients from trusted local producers. Whether you\'re meeting a friend for morning coffee or celebrating a special occasion over dinner, LaRoc sets the stage for memories worth making.',
     'about.stat1': 'Years Serving',
     'about.stat2': 'Menu Items',
-    'about.stat3': 'Guest Rating',
+    'about.stat3': 'Google Rating',
 
     'gal.label': 'From Our Kitchen',
     'gal.h2': 'Signature Dishes',
@@ -738,6 +806,9 @@ var T = {
     'rev.r2': 'Came for the BBQ ribs and stayed for the atmosphere. Warm, relaxed, and the food is consistently excellent every time we visit.',
     'rev.r3': 'The pistachio cake is out of this world. Staff are so friendly, prices are fair, and the menu has something for everyone. Highly recommend.',
     'rev.source': 'Google Review',
+    'rev.count': 'Based on 146 Google Reviews',
+    'rev.cta.p': 'Enjoyed your visit? Your review helps others discover LaRoc.',
+    'rev.cta.btn': '⭐ Leave a Google Review',
 
     // Reservation
     'res.label': 'Reservations',
@@ -759,6 +830,7 @@ var T = {
     'res.special.ph': 'Allergies, occasion, seating preferences…',
     'res.btn': 'Reserve Your Table',
     'res.btn.sent': '✓ Reservation Sent!',
+    'res.success': '✓ Thank you! Your reservation request has been received. We will confirm by phone.',
 
     // Contact
     'contact.h2': 'Find Us',
@@ -790,6 +862,9 @@ var T = {
     'hero.btn2': 'Pogledajte Meni',
     'hero.btn3': 'Poručite Online',
     'hero.hours': 'Pon – Sub · 08:00 – 23:00  ·  Ned Zatvoreno',
+    'trust.rating': 'Google Ocena',
+    'trust.reviews': 'Recenzija',
+    'trust.price': 'RSD prosečna cena',
 
     'feat.breakfast.title': 'Doručak',
     'feat.breakfast.sub': 'Svakog dana',
@@ -950,6 +1025,9 @@ var T = {
     'rev.r2': 'Došli smo zbog BBQ rebaraca i ostali zbog atmosfere. Toplo, opušteno i hrana je dosledno odlična svaki put.',
     'rev.r3': 'Pistacija torta je van ovoga sveta. Osoblje je tako prijatno, cene su fer, a meni ima nešto za svakoga. Toplo preporučujem.',
     'rev.source': 'Google Recenzija',
+    'rev.count': 'Na osnovu 146 Google recenzija',
+    'rev.cta.p': 'Uživali ste u poseti? Vaša recenzija pomaže drugima da otkriju LaRoc.',
+    'rev.cta.btn': '⭐ Ostavite Google Recenziju',
 
     // Reservation
     'res.label': 'Rezervacije',
@@ -971,6 +1049,7 @@ var T = {
     'res.special.ph': 'Alergije, povod, preference sedenja…',
     'res.btn': 'Rezervišite Vaš Sto',
     'res.btn.sent': '✓ Rezervacija Poslata!',
+    'res.success': '✓ Hvala! Vaš zahtev za rezervaciju je primljen. Potvrdiće mo telefonom.',
 
     // Contact
     'contact.h2': 'Pronađite Nas',
@@ -1041,10 +1120,20 @@ document.getElementById('cats').addEventListener('click', function(e) {
 // ── Reservation Button ─────────────────────────────────────────────────────────
 document.getElementById('res-btn').addEventListener('click', function() {
   var btn = this;
+  var form = btn.closest('.res-form');
+  var inputs = form.querySelectorAll('input[required], select[required]');
+  var valid = true;
+  inputs.forEach(function(inp) { if (!inp.value.trim()) { inp.style.borderColor='rgba(200,60,60,.6)'; valid = false; } else { inp.style.borderColor=''; } });
+  if (!valid) return;
+  btn.disabled = true;
   btn.textContent = T[currentLang]['res.btn.sent'];
+  var success = document.getElementById('res-success');
+  if (success) { success.textContent = T[currentLang]['res.success']; success.style.display = 'block'; }
   setTimeout(function() {
+    btn.disabled = false;
     btn.textContent = T[currentLang]['res.btn'];
-  }, 3000);
+    if (success) success.style.display = 'none';
+  }, 5000);
 });
 
 // ── Scroll Reveal (IntersectionObserver) ───────────────────────────────────────
@@ -1126,6 +1215,45 @@ document.querySelectorAll('.feat-card').forEach(function(card) {
     card.style.transform = '';
   });
 });
+
+// ── Gallery Lightbox ──────────────────────────────────────────────────────────
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-caption');
+  var cards = Array.from(document.querySelectorAll('.dish-card'));
+  var current = 0;
+
+  function open(idx) {
+    current = idx;
+    var card = cards[idx];
+    var img = card.querySelector('img');
+    var name = card.querySelector('.dish-name');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = name ? name.textContent : '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function prev() { open((current - 1 + cards.length) % cards.length); }
+  function next() { open((current + 1) % cards.length); }
+
+  cards.forEach(function(card, i) {
+    card.style.cursor = 'zoom-in';
+    card.addEventListener('click', function() { open(i); });
+  });
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.getElementById('lb-prev').addEventListener('click', function(e) { e.stopPropagation(); prev(); });
+  document.getElementById('lb-next').addEventListener('click', function(e) { e.stopPropagation(); next(); });
+  lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+})();
 </script>
 </body>
 </html>
