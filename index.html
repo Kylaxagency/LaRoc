@@ -336,12 +336,21 @@
     .feat-card{flex:1 1 33%;min-width:33%}
     .feat-card+.feat-card::before{display:none}
     .about-inner,.contact-inner{grid-template-columns:1fr}
-    .menu-section.visible,.reviews-grid{grid-template-columns:1fr}
-    .menu-item:last-child:nth-child(odd){max-width:100%}
+    .reviews-grid{grid-template-columns:1fr}
     .nav-links{display:none}
     .res-form{grid-template-columns:1fr}
     .res-form .full{grid-column:1}
     .res-btn{grid-column:1}
+    /* Menu mobile */
+    .menu-hero-title{font-size:28px}
+    .menu-hero-title em{font-size:24px}
+    .menu-carousel-wrap{padding:0 44px}
+    .cat-card{width:72px;height:80px}
+    .cat-card-icon{font-size:18px}
+    .showcase-track{flex-direction:column;align-items:center;gap:16px}
+    .showcase-card,.showcase-card.featured{width:100%;max-width:380px;transform:none !important}
+    .menu-feature-strip{flex-wrap:wrap}
+    .feat-item{flex:1 1 40%;border-right:none;border-bottom:1px solid rgba(201,168,76,0.1);padding-bottom:16px;margin-bottom:8px}
   }
 </style>
 </head>
@@ -472,107 +481,349 @@
 
 <!-- MENU -->
 <section class="menu-sec" id="menu">
-  <div class="menu-spotlight" id="menuSpotlight"></div>
-  <div class="sec-header reveal">
-    <span class="sec-label" data-i18n="menu.label">Explore</span>
-    <h2 class="serif" data-i18n="menu.h2">Our Menu</h2>
-    <p class="menu-tagline">Crafted daily &nbsp;·&nbsp; Served with care</p>
+  <div class="menu-bokeh" id="menuBokeh"></div>
+
+  <div class="menu-hero reveal">
+    <span class="menu-hero-label" data-i18n="menu.label">Explore Our Menu</span>
+    <h2 class="menu-hero-title">
+      <span data-i18n="menu.h2top">Crafted with passion,</span>
+      <em data-i18n="menu.h2em">served with care</em>
+    </h2>
+    <p class="menu-hero-sub" data-i18n="menu.h2sub">Belgrade &middot; Est. 2018</p>
   </div>
-  <div class="menu-nav" id="cats">
-    <div class="menu-nav-track">
-      <div class="menu-nav-indicator" id="catIndicator"></div>
-      <button class="cat-btn active" data-cat="breakfast" data-i18n="menu.cat.breakfast">Breakfast</button>
-      <button class="cat-btn" data-cat="sandwiches" data-i18n="menu.cat.sandwiches">Sandwiches</button>
-      <button class="cat-btn" data-cat="appetizers" data-i18n="menu.cat.appetizers">Appetizers</button>
-      <button class="cat-btn" data-cat="pasta" data-i18n="menu.cat.pasta">Pasta</button>
-      <button class="cat-btn" data-cat="mains" data-i18n="menu.cat.mains">Mains</button>
-      <button class="cat-btn" data-cat="pizza" data-i18n="menu.cat.pizza">Pizza</button>
-      <button class="cat-btn" data-cat="burgers" data-i18n="menu.cat.burgers">Burgers</button>
-      <button class="cat-btn" data-cat="desserts" data-i18n="menu.cat.desserts">Desserts</button>
+
+  <div class="menu-carousel-wrap">
+    <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous">&#8249;</button>
+    <div class="menu-carousel" id="menuCarousel">
+      <div class="cat-card active" data-cat="breakfast" data-idx="0">
+        <span class="cat-card-icon">&#9728;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.breakfast">Breakfast</span>
+      </div>
+      <div class="cat-card" data-cat="sandwiches" data-idx="1">
+        <span class="cat-card-icon">&#127829;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.sandwiches">Sandwiches</span>
+      </div>
+      <div class="cat-card" data-cat="appetizers" data-idx="2">
+        <span class="cat-card-icon">&#127861;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.appetizers">Appetizers</span>
+      </div>
+      <div class="cat-card" data-cat="pasta" data-idx="3">
+        <span class="cat-card-icon">&#127837;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.pasta">Pasta</span>
+      </div>
+      <div class="cat-card" data-cat="mains" data-idx="4">
+        <span class="cat-card-icon">&#127859;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.mains">Mains</span>
+      </div>
+      <div class="cat-card" data-cat="pizza" data-idx="5">
+        <span class="cat-card-icon">&#127829;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.pizza">Pizza</span>
+      </div>
+      <div class="cat-card" data-cat="burgers" data-idx="6">
+        <span class="cat-card-icon">&#127828;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.burgers">Burgers</span>
+      </div>
+      <div class="cat-card" data-cat="desserts" data-idx="7">
+        <span class="cat-card-icon">&#127850;</span>
+        <span class="cat-card-label" data-i18n="menu.cat.desserts">Desserts</span>
+      </div>
+    </div>
+    <button class="carousel-btn next" id="carouselNext" aria-label="Next">&#8250;</button>
+  </div>
+
+  <div class="menu-showcase" id="menuShowcase">
+
+    <div class="showcase-panel active" data-panel="breakfast">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/cevapi.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.b1.name">LaRoc Breakfast</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.b1.desc">3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">850</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/restaurant.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.b6.name">Breakfast for Two</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.b6.desc">4 eggs, sausages, bacon, cream, ajvar, tomatoes</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,590</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/sandwich.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.b5.name">Avocado Toast</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.b5.desc">Toasted bread, guacamole, cherry tomatoes, arugula</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">790</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="sandwiches">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/sandwich.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.s1.name">Classic Sandwich</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.s1.desc">Homemade ciabatta, sour cream, ham, cheese, tomatoes</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">790</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/sandwich.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.s5.name">Zlatibor Sandwich</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.s5.desc">Ciabatta, young cream cheese, prosciutto</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,030</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/sandwich.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.s3.name">Pesto Sandwich</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.s3.desc">Ciabatta, pesto, cured prosciutto, fresh mozzarella</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">950</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="appetizers">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.a3.name">Tomato Bruschetta</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.a3.desc">Fresh tomatoes on toasted bread</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">690</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/cevapi.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.a1.name">LaRoc Platter</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.a1.desc">Prosciutto, chorizo, gorgonzola, smoked cheese, olives</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">2,180</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.a4.name">Greek Bouyourdi</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.a4.desc">Feta cheese, olive oil, tomatoes, oregano</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,020</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="pasta">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/tagliatelle.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.p3.name">Tagliatelle Bolognese</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.p3.desc">Classic slow-cooked meat rag&ugrave;</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,290</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/tagliatelle.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.p5.name">Steak Tagliatelle</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.p5.desc">Premium steak strips with fresh pasta</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,990</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/tagliatelle.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.p6.name">Shrimp Tagliatelle</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.p6.desc">Fresh shrimp in Mediterranean sauce</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,890</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="mains">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/cevapi.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.mn1.name">Priboj Kebabs</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.mn1.desc">Traditional Serbian-style kebabs</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,450</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/cevapi.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.mn2.name">BBQ Ribs</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.mn2.desc">Slow-cooked ribs with BBQ glaze</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,650</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/cevapi.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.mn6.name">Steak with Arugula</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.mn6.desc">Grilled steak, fresh arugula, cherry tomatoes</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">2,350</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="pizza">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.pz1.name">Margherita</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.pz1.desc">San Marzano tomato, mozzarella, basil</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,150</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.pz6.name">Prosciutto &amp; Arugula</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.pz6.desc">Prosciutto crudo, arugula, cherry tomatoes</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,590</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.pz4.name">Four Cheese Pizza</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.pz4.desc">Mozzarella, gorgonzola, parmesan, ricotta</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,390</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="burgers">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.bg1.name">Classic Burger</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.bg1.desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,390</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.bg2.name">BBQ Burger</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.bg2.desc">100% beef, cheddar, grilled bacon, BBQ sauce, fries</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,490</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.bg1.name">Classic Burger</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.bg1.desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">1,390</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="showcase-panel" data-panel="desserts">
+      <div class="showcase-track">
+        <div class="showcase-card">
+          <div class="card-img"><img src="images/pistachio-balls.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.d6.name">Pistachio Balls</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.d6.desc">Bite-size pistachio confections</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">570</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card featured">
+          <div class="card-img"><div class="card-badge" data-i18n="badge.bestseller">BESTSELLER</div><img src="images/pistachio-balls.jpg" onerror="this.style.display='none'" alt="" loading="lazy"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.d2.name">Pistachio &amp; Raspberry Cake</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.d2.desc">Layered pistachio cream with raspberry compote</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">750</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+        <div class="showcase-card">
+          <div class="card-img"><div class="card-img-gradient"></div></div>
+          <div class="card-body">
+            <div class="card-name" data-i18n="m.d1.name">Chocolate Cake</div>
+            <div class="card-sep"></div>
+            <div class="card-desc" data-i18n="m.d1.desc">Rich dark chocolate layer cake</div>
+            <div class="card-footer"><div class="card-price-wrap"><div class="card-price">750</div><div class="card-rsd">RSD</div></div><button class="card-add" aria-label="Add">+</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /menu-showcase -->
+
+  <div class="showcase-pagination" id="showcasePagination">
+    <button class="showcase-nav-btn" id="showcasePrev">&#8249;</button>
+    <div class="showcase-dots" id="showcaseDots"></div>
+    <span class="showcase-counter" id="showcaseCounter">01 &mdash; 08</span>
+    <button class="showcase-nav-btn" id="showcaseNext">&#8250;</button>
+  </div>
+
+  <div class="menu-cta-row">
+    <button class="btn-view-menu" onclick="document.getElementById('res').scrollIntoView({behavior:'smooth'})">
+      <span>&#128214;</span>
+      <span data-i18n="menu.cta">VIEW FULL MENU</span>
+    </button>
+  </div>
+
+  <div class="menu-feature-strip">
+    <div class="feat-item">
+      <span class="feat-icon">&#127807;</span>
+      <span class="feat-label" data-i18n="menu.feat1">Fresh Ingredients</span>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">&#128081;</span>
+      <span class="feat-label" data-i18n="menu.feat2">Chef's Specialties</span>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">&#127981;</span>
+      <span class="feat-label" data-i18n="menu.feat3">Local Flavors</span>
+    </div>
+    <div class="feat-item">
+      <span class="feat-icon">&#10024;</span>
+      <span class="feat-label" data-i18n="menu.feat4">Premium Experience</span>
     </div>
   </div>
-  <div class="menu-stage">
 
-  <!-- BREAKFAST -->
-  <div id="breakfast" class="menu-section menu-grid visible">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b1.name">LaRoc Breakfast</div><div class="menu-desc" data-i18n="m.b1.desc">3 scrambled eggs, sausages, smoked cheese, iceberg, cherry tomatoes</div></div><div class="menu-price">850</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b2.name">Italian Toast</div><div class="menu-desc" data-i18n="m.b2.desc">French fries, sour cream, ham, cheese, peppers</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b3.name">Greek Scrambled Eggs</div><div class="menu-desc" data-i18n="m.b3.desc">Pita, scrambled eggs, tzatziki, grilled bacon, tomatoes</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b4.name">Valjevo Breakfast</div><div class="menu-desc" data-i18n="m.b4.desc">Cracklings, fresh cream, ajvar, crispy bacon</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b5.name">Avocado Toast</div><div class="menu-desc" data-i18n="m.b5.desc">Toasted bread, guacamole, cherry tomatoes, arugula</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b6.name">Breakfast for Two</div><div class="menu-desc" data-i18n="m.b6.desc">4 eggs, sausages, bacon, cream, ajvar, tomatoes</div></div><div class="menu-price">1,590</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b7.name">Sweet Doughnuts</div><div class="menu-desc" data-i18n="m.b7.desc">Doughnuts with Nutella</div></div><div class="menu-price">690</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.b8.name">Protein Breakfast</div><div class="menu-desc" data-i18n="m.b8.desc">5 egg white omelet with peppers and mushrooms</div></div><div class="menu-price">790</div></div>
-  </div>
-
-  <!-- SANDWICHES -->
-  <div id="sandwiches" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s1.name">Classic Sandwich</div><div class="menu-desc" data-i18n="m.s1.desc">Homemade ciabatta, sour cream, ham, cheese, tomatoes</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s2.name">Curry Chicken Sandwich</div><div class="menu-desc" data-i18n="m.s2.desc">Ciabatta, mango curry sauce, grilled chicken, lettuce</div></div><div class="menu-price">800</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s3.name">Pesto Sandwich</div><div class="menu-desc" data-i18n="m.s3.desc">Ciabatta, pesto, cured prosciutto, fresh mozzarella</div></div><div class="menu-price">950</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s4.name">Spicy Sandwich</div><div class="menu-desc" data-i18n="m.s4.desc">Ciabatta, mayonnaise, homemade kulen sausage, cheese</div></div><div class="menu-price">920</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s5.name">Zlatibor Sandwich</div><div class="menu-desc" data-i18n="m.s5.desc">Ciabatta, young cream cheese, prosciutto</div></div><div class="menu-price">1,030</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.s6.name">Tel Aviv Sandwich</div><div class="menu-desc" data-i18n="m.s6.desc">Ciabatta, hummus, grilled vegetables</div></div><div class="menu-price">750</div></div>
-  </div>
-
-  <!-- APPETIZERS -->
-  <div id="appetizers" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a1.name">LaRoc Platter</div><div class="menu-desc" data-i18n="m.a1.desc">Prosciutto, chorizo, gorgonzola, smoked cheese, olives</div></div><div class="menu-price">2,180</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a2.name">Fried Mix</div><div class="menu-desc" data-i18n="m.a2.desc">Mozzarella sticks, chicken sticks, onion rings, fries</div></div><div class="menu-price">1,350</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a3.name">Tomato Bruschetta</div><div class="menu-desc" data-i18n="m.a3.desc">Fresh tomatoes on toasted bread</div></div><div class="menu-price">690</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a4.name">Greek Bouyourdi</div><div class="menu-desc" data-i18n="m.a4.desc">Feta cheese, olive oil, tomatoes, oregano</div></div><div class="menu-price">1,020</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.a5.name">Spring Rolls</div><div class="menu-desc" data-i18n="m.a5.desc">Vegetable spring rolls with sweet chili sauce</div></div><div class="menu-price">680</div></div>
-  </div>
-
-  <!-- PASTA -->
-  <div id="pasta" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p1.name">Penne Arrabbiata</div><div class="menu-desc" data-i18n="m.p1.desc">Classic spicy tomato sauce</div></div><div class="menu-price">1,140</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p2.name">Four Cheese Chicken Penne</div><div class="menu-desc" data-i18n="m.p2.desc">Creamy four cheese sauce with grilled chicken</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p3.name">Tagliatelle Bolognese</div><div class="menu-desc" data-i18n="m.p3.desc">Classic slow-cooked meat ragù</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p4.name">Prosciutto Parmigiano Tagliatelle</div><div class="menu-desc" data-i18n="m.p4.desc">Prosciutto, parmigiano, cream sauce</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p5.name">Steak Tagliatelle</div><div class="menu-desc" data-i18n="m.p5.desc">Premium steak strips with fresh pasta</div></div><div class="menu-price">1,990</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.p6.name">Shrimp Tagliatelle</div><div class="menu-desc" data-i18n="m.p6.desc">Fresh shrimp in Mediterranean sauce</div></div><div class="menu-price">1,890</div></div>
-  </div>
-
-  <!-- MAINS -->
-  <div id="mains" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn1.name">Priboj Kebabs</div><div class="menu-desc" data-i18n="m.mn1.desc">Traditional Serbian-style kebabs</div></div><div class="menu-price">1,450</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn2.name">BBQ Ribs</div><div class="menu-desc" data-i18n="m.mn2.desc">Slow-cooked ribs with BBQ glaze</div></div><div class="menu-price">1,650</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn3.name">Veal Schnitzel</div><div class="menu-desc" data-i18n="m.mn3.desc">Breaded veal with seasonal sides</div></div><div class="menu-price">1,790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn4.name">Mediterranean Chicken</div><div class="menu-desc" data-i18n="m.mn4.desc">Herbs, olive oil, roasted vegetables</div></div><div class="menu-price">1,450</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn5.name">Serbian Platter for Two</div><div class="menu-desc" data-i18n="m.mn5.desc">Mixed selection of Serbian meats and sides</div></div><div class="menu-price">2,790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn6.name">Steak with Arugula</div><div class="menu-desc" data-i18n="m.mn6.desc">Grilled steak, fresh arugula, cherry tomatoes</div></div><div class="menu-price">2,350</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn7.name">Smoked Trout</div><div class="menu-desc" data-i18n="m.mn7.desc">Whole smoked trout with seasonal garnish</div></div><div class="menu-price">1,690</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.mn8.name">Chicken Wok</div><div class="menu-desc" data-i18n="m.mn8.desc">Wok-fried chicken with seasonal vegetables</div></div><div class="menu-price">1,450</div></div>
-  </div>
-
-  <!-- PIZZA -->
-  <div id="pizza" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz1.name">Margherita</div><div class="menu-desc" data-i18n="m.pz1.desc">San Marzano tomato, mozzarella, basil</div></div><div class="menu-price">1,150</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz2.name">Capricciosa</div><div class="menu-desc" data-i18n="m.pz2.desc">Ham, mushrooms, olives, mozzarella</div></div><div class="menu-price">1,290</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz3.name">Diavola</div><div class="menu-desc" data-i18n="m.pz3.desc">Spicy salami, chili, mozzarella</div></div><div class="menu-price">1,350</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz4.name">Four Cheese Pizza</div><div class="menu-desc" data-i18n="m.pz4.desc">Mozzarella, gorgonzola, parmesan, ricotta</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz5.name">Serbian Pizza</div><div class="menu-desc" data-i18n="m.pz5.desc">Local meats and traditional flavors</div></div><div class="menu-price">1,490</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.pz6.name">Prosciutto &amp; Arugula</div><div class="menu-desc" data-i18n="m.pz6.desc">Prosciutto crudo, arugula, cherry tomatoes</div></div><div class="menu-price">1,590</div></div>
-  </div>
-
-  <!-- BURGERS -->
-  <div id="burgers" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.bg1.name">Classic Burger</div><div class="menu-desc" data-i18n="m.bg1.desc">100% beef, cheddar, tomato, iceberg lettuce, fries</div></div><div class="menu-price">1,390</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.bg2.name">BBQ Burger</div><div class="menu-desc" data-i18n="m.bg2.desc">100% beef, cheddar, grilled bacon, BBQ sauce, fries</div></div><div class="menu-price">1,490</div></div>
-  </div>
-
-  <!-- DESSERTS -->
-  <div id="desserts" class="menu-section menu-grid">
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d1.name">Chocolate Cake</div><div class="menu-desc" data-i18n="m.d1.desc">Rich dark chocolate layer cake</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d2.name">Pistachio &amp; Raspberry Cake</div><div class="menu-desc" data-i18n="m.d2.desc">Layered pistachio cream with raspberry compote</div></div><div class="menu-price">750</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d3.name">Blueberry Cake</div><div class="menu-desc" data-i18n="m.d3.desc">Light sponge with fresh blueberry filling</div></div><div class="menu-price">790</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d4.name">Sour Cherry Cheesecake</div><div class="menu-desc" data-i18n="m.d4.desc">New York-style with sour cherry topping</div></div><div class="menu-price">650</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d5.name">Chocolate Dumplings</div><div class="menu-desc" data-i18n="m.d5.desc">Warm chocolate-filled dumplings</div></div><div class="menu-price">590</div></div>
-    <div class="menu-item"><div><div class="menu-name" data-i18n="m.d6.name">Pistachio Balls</div><div class="menu-desc" data-i18n="m.d6.desc">Bite-size pistachio confections</div></div><div class="menu-price">570</div></div>
-  </div>
-
-  </div><!-- /menu-stage -->
 </section>
 
 <!-- REVIEWS -->
@@ -776,6 +1027,15 @@ var T = {
 
     'menu.label': 'Explore',
     'menu.h2': 'Our Menu',
+    'menu.h2top': 'Crafted with passion,',
+    'menu.h2em': 'served with care',
+    'menu.h2sub': 'Belgrade · Est. 2018',
+    'menu.cta': 'VIEW FULL MENU',
+    'menu.feat1': 'Fresh Ingredients',
+    'menu.feat2': "Chef's Specialties",
+    'menu.feat3': 'Local Flavors',
+    'menu.feat4': 'Premium Experience',
+    'badge.bestseller': 'BESTSELLER',
     'menu.cat.breakfast': 'Breakfast',
     'menu.cat.sandwiches': 'Sandwiches',
     'menu.cat.appetizers': 'Appetizers',
@@ -995,6 +1255,15 @@ var T = {
 
     'menu.label': 'Istražite',
     'menu.h2': 'Naš Meni',
+    'menu.h2top': 'Pravljeno sa strastšu,',
+    'menu.h2em': 'posluženo sa pažnjom',
+    'menu.h2sub': 'Beograd · Osn. 2018.',
+    'menu.cta': 'POGLEDAJ KOMPLETAN MENI',
+    'menu.feat1': 'Sveže Namirnice',
+    'menu.feat2': 'Specijaliteti Kuvara',
+    'menu.feat3': 'Lokalni Ukusi',
+    'menu.feat4': 'Premium Iskustvo',
+    'badge.bestseller': 'BESTSELER',
     'menu.cat.breakfast': 'Doručak',
     'menu.cat.sandwiches': 'Sendviči',
     'menu.cat.appetizers': 'Predjela',
@@ -1201,138 +1470,144 @@ function setLang(lang) {
   applyTranslations(lang);
 }
 
-// ── Menu — Premium Interactive Experience ─────────────────────────────────────
+// ── Menu Cinematic — Carousel + Showcase
 (function() {
-  var track = document.querySelector('.menu-nav-track');
-  var indicator = document.getElementById('catIndicator');
+  var cats = ['breakfast','sandwiches','appetizers','pasta','mains','pizza','burgers','desserts'];
+  var activeIdx = 0;
+  var cards = document.querySelectorAll('.cat-card');
+  var panels = document.querySelectorAll('.showcase-panel');
+  var dots = document.getElementById('showcaseDots');
+  var counter = document.getElementById('showcaseCounter');
 
-  // ── Stamp item counts onto category buttons ─────────────────────────────────
-  document.querySelectorAll('.cat-btn').forEach(function(btn) {
-    var sec = document.getElementById(btn.dataset.cat);
-    if (sec) btn.setAttribute('data-count', sec.querySelectorAll('.menu-item').length);
+  cats.forEach(function(_, i) {
+    var d = document.createElement('span');
+    d.className = 'showcase-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', function() { goTo(i); });
+    dots.appendChild(d);
   });
 
-  // ── Sliding indicator ───────────────────────────────────────────────────────
-  function moveIndicator(btn) {
-    if (!indicator || !track || !btn) return;
-    var bRect = btn.getBoundingClientRect();
-    var tRect = track.getBoundingClientRect();
-    indicator.style.left  = (bRect.left - tRect.left + track.scrollLeft) + 'px';
-    indicator.style.width = bRect.width + 'px';
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function updateCounter(idx) {
+    if (counter) counter.textContent = pad(idx + 1) + ' — ' + pad(cats.length);
   }
 
-  // ── Serve cards with stagger ────────────────────────────────────────────────
-  function serveSection(catId) {
-    var section = document.getElementById(catId);
-    if (!section) return;
-    var items = section.querySelectorAll('.menu-item');
-    // Force reflow to reset animation
-    items.forEach(function(item) { item.classList.remove('serving'); void item.offsetWidth; });
-    requestAnimationFrame(function() {
-      items.forEach(function(item, i) {
-        // Stagger: each card 55ms after previous, max 8 visible before instant
-        setTimeout(function() { item.classList.add('serving'); }, Math.min(i, 7) * 55);
-      });
+  function updateDots(idx) {
+    document.querySelectorAll('.showcase-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === idx);
     });
   }
 
-  // ── Category click ──────────────────────────────────────────────────────────
-  document.getElementById('cats').addEventListener('click', function(e) {
-    var btn = e.target.closest('.cat-btn');
-    if (!btn || btn.classList.contains('active')) return;
-    document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    moveIndicator(btn);
-    var cat = btn.dataset.cat;
-    document.querySelectorAll('.menu-section').forEach(function(s) {
-      s.classList.toggle('visible', s.id === cat);
+  function updateArc(idx) {
+    cards.forEach(function(card, i) {
+      var pos = Math.max(-4, Math.min(4, i - idx));
+      card.setAttribute('data-pos', pos);
+      card.classList.toggle('active', i === idx);
     });
-    serveSection(cat);
+  }
+
+  function showPanel(idx) {
+    panels.forEach(function(p, i) {
+      p.classList.toggle('active', i === idx);
+      if (i === idx) {
+        p.querySelectorAll('.showcase-card').forEach(function(c, ci) {
+          c.classList.remove('entering');
+          void c.offsetWidth;
+          setTimeout(function() { c.classList.add('entering'); }, ci * 80);
+        });
+      }
+    });
+  }
+
+  function goTo(idx) {
+    activeIdx = ((idx % cats.length) + cats.length) % cats.length;
+    updateArc(activeIdx);
+    showPanel(activeIdx);
+    updateDots(activeIdx);
+    updateCounter(activeIdx);
+  }
+
+  updateArc(0);
+  updateCounter(0);
+
+  var menuEl = document.getElementById('menu');
+  if (menuEl) {
+    var initIO = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        showPanel(0);
+        initIO.unobserve(e.target);
+      });
+    }, { threshold: 0.1 });
+    initIO.observe(menuEl);
+  }
+
+  var prevBtn = document.getElementById('carouselPrev');
+  var nextBtn = document.getElementById('carouselNext');
+  if (prevBtn) prevBtn.addEventListener('click', function() { goTo(activeIdx - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { goTo(activeIdx + 1); });
+
+  cards.forEach(function(card, i) {
+    card.addEventListener('click', function() { goTo(i); });
   });
 
-  // ── Init indicator on load (wait for layout + fonts) ───────────────────────
-  function initIndicator() {
-    var activeBtn = document.querySelector('.cat-btn.active');
-    if (activeBtn) moveIndicator(activeBtn);
-  }
-  // Fire twice: immediately + after fonts settle
-  requestAnimationFrame(initIndicator);
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(initIndicator);
-  } else {
-    setTimeout(initIndicator, 300);
-  }
+  var sprev = document.getElementById('showcasePrev');
+  var snext = document.getElementById('showcaseNext');
+  if (sprev) sprev.addEventListener('click', function() { goTo(activeIdx - 1); });
+  if (snext) snext.addEventListener('click', function() { goTo(activeIdx + 1); });
 
-  // ── Serve default section when it enters the viewport ──────────────────────
-  var defaultSec = document.querySelector('.menu-section.visible');
-  if (defaultSec) {
-    var menuIO = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (!entry.isIntersecting) return;
-        serveSection(defaultSec.id);
-        menuIO.unobserve(entry.target);
-      });
-    }, { threshold: 0.12 });
-    menuIO.observe(defaultSec);
-  }
+  document.addEventListener('keydown', function(e) {
+    var menu = document.getElementById('menu');
+    if (!menu) return;
+    var r = menu.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+    if (e.key === 'ArrowLeft') goTo(activeIdx - 1);
+    if (e.key === 'ArrowRight') goTo(activeIdx + 1);
+  });
 })();
 
-// ── Menu Card 3D Perspective Tilt ─────────────────────────────────────────────
+// ── Showcase Card Tilt
 (function() {
-  // Skip on touch devices — tilt makes no sense without a mouse
   if ('ontouchstart' in window) return;
-
-  document.querySelectorAll('.menu-item').forEach(function(item) {
-    var leaveTimeout;
-
-    item.addEventListener('mouseenter', function() {
-      clearTimeout(leaveTimeout);
-      item.style.transition = 'transform 0.08s ease,box-shadow 0.4s,border-left-color 0.35s,border-color 0.35s';
+  document.querySelectorAll('.showcase-card').forEach(function(card) {
+    var leaveT;
+    card.addEventListener('mouseenter', function() {
+      clearTimeout(leaveT);
+      card.style.transition = 'transform 0.08s ease,box-shadow 0.3s,border-color 0.3s';
     });
-
-    item.addEventListener('mousemove', function(e) {
-      var r   = item.getBoundingClientRect();
-      var nx  = (e.clientX - r.left)  / r.width;   // 0→1
-      var ny  = (e.clientY - r.top)   / r.height;  // 0→1
-      var rotY =  (nx - 0.5) * 10;   // ±5°
-      var rotX = -(ny - 0.5) *  7;   // ±3.5°
-      item.style.transform =
-        'perspective(900px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-6px) translateZ(10px)';
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width;
+      var ny = (e.clientY - r.top) / r.height;
+      var rx = -(ny - 0.5) * 8;
+      var ry = (nx - 0.5) * 10;
+      var base = card.classList.contains('featured') ? 'translateY(-18px)' : 'translateY(-12px)';
+      card.style.transform = 'perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) '+base+' translateZ(8px)';
     });
-
-    item.addEventListener('mouseleave', function() {
-      item.style.transition = 'transform 0.65s cubic-bezier(.22,1,.36,1),box-shadow 0.45s,border-left-color 0.35s,border-color 0.35s';
-      item.style.transform = '';
-      leaveTimeout = setTimeout(function() { item.style.transition = ''; }, 700);
+    card.addEventListener('mouseleave', function() {
+      card.style.transition = 'transform 0.6s cubic-bezier(.22,1,.36,1),box-shadow 0.4s,border-color 0.35s';
+      card.style.transform = card.classList.contains('featured') ? 'translateY(-8px)' : '';
+      leaveT = setTimeout(function() { card.style.transition = ''; }, 650);
     });
   });
 })();
 
-// ── Menu Cursor Spotlight ─────────────────────────────────────────────────────
+// ── Bokeh Generator
 (function() {
-  var sec  = document.getElementById('menu');
-  var spot = document.getElementById('menuSpotlight');
-  if (!sec || !spot) return;
-  var raf, active = false;
-
-  sec.addEventListener('mouseenter', function() { active = true; });
-  sec.addEventListener('mouseleave', function() {
-    active = false;
-    cancelAnimationFrame(raf);
-    spot.style.transform = 'translate(-9999px,-9999px)';
-  });
-  sec.addEventListener('mousemove', function(e) {
-    if (!active) return;
-    var r  = sec.getBoundingClientRect();
-    var px = e.clientX - r.left - 400;
-    var py = e.clientY - r.top  - 400;
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(function() {
-      spot.style.transform = 'translate('+px+'px,'+py+'px)';
-    });
+  var bokeh = document.getElementById('menuBokeh');
+  if (!bokeh) return;
+  [{w:500,h:500,l:8,t:15,dur:22,tx:40,ty:-50,sc:1.15,op:0.7},
+   {w:350,h:350,l:75,t:60,dur:18,tx:-30,ty:40,sc:1.2,op:0.5},
+   {w:280,h:280,l:45,t:80,dur:26,tx:20,ty:-30,sc:0.9,op:0.4},
+   {w:420,h:420,l:85,t:10,dur:20,tx:-40,ty:30,sc:1.1,op:0.6},
+   {w:200,h:200,l:20,t:50,dur:15,tx:30,ty:20,sc:1.3,op:0.3}
+  ].forEach(function(o) {
+    var el = document.createElement('div');
+    el.className = 'menu-bokeh-orb';
+    el.style.cssText = 'width:'+o.w+'px;height:'+o.h+'px;left:'+o.l+'%;top:'+o.t+'%;opacity:'+o.op+';--dur:'+o.dur+'s;--tx:'+o.tx+'px;--ty:'+o.ty+'px;--sc:'+o.sc;
+    bokeh.appendChild(el);
   });
 })();
-
 
 // ── Scroll Reveal (IntersectionObserver) ───────────────────────────────────────
 (function() {
