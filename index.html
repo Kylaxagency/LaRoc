@@ -87,31 +87,41 @@
   .stat-n{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);display:block}
   .stat-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6a5a40;margin-top:2px}
 
-  /* MENU */
-  .menu-sec{background:#111;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
+  /* ── MENU PREMIUM REDESIGN ── */
+  .menu-sec{background:#080604;padding:72px 28px 88px;border-bottom:1px solid rgba(201,168,76,0.12);position:relative;overflow:hidden}
+  .menu-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 55%,rgba(201,168,76,0.045) 0%,transparent 100%),radial-gradient(ellipse 50% 40% at 88% 25%,rgba(201,168,76,0.03) 0%,transparent 100%);pointer-events:none;z-index:0}
+  .menu-spotlight{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.055) 0%,transparent 65%);pointer-events:none;top:0;left:0;transform:translate(-9999px,-9999px);will-change:transform;z-index:0}
+  .menu-sec .sec-header{position:relative;z-index:1;margin-bottom:44px}
   .sec-header{text-align:center;margin-bottom:36px}
   .sec-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
   .sec-header h2{font-family:'Playfair Display',serif;font-size:30px;font-weight:400;color:#f0e8d0}
-  .menu-cats{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
-  .cat-btn{background:transparent;border:1px solid rgba(201,168,76,0.22);color:#7a6a50;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s,transform .1s;border-radius:2px;position:relative;overflow:hidden}
-  .cat-btn::after{content:'';position:absolute;inset:0;background:rgba(201,168,76,0.06);opacity:0;transition:opacity .2s}
-  .cat-btn:hover::after{opacity:1}
-  .cat-btn:active{transform:translateY(2px)}
-  .cat-btn.active{border-color:var(--gold);color:#111;background:var(--gold);font-weight:600}
-  .cat-btn.active::after{display:none}
-  .menu-grid{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px;perspective:1200px}
-  .menu-item:last-child:nth-child(odd){grid-column:1/-1;justify-content:center;text-align:center}
-  .menu-item{background:linear-gradient(145deg,#141210 0%,#0f0d0b 100%);border:1px solid rgba(201,168,76,0.1);padding:22px 22px 20px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .3s;transform-style:preserve-3d;border-radius:2px}
-  .menu-item::before{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);transition:width .55s cubic-bezier(.22,1,.36,1);z-index:1}
-  .menu-item::after{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+  .menu-tagline{font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:#332a1e;margin-top:12px}
+  /* ── Category navigation ── */
+  .menu-nav{max-width:860px;margin:0 auto 52px;position:relative;z-index:1}
+  .menu-nav-track{display:flex;position:relative;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.1);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+  .menu-nav-track::-webkit-scrollbar{display:none}
+  .menu-nav-indicator{position:absolute;bottom:-1px;height:2px;background:linear-gradient(90deg,rgba(201,168,76,0),var(--gold),rgba(201,168,76,0));box-shadow:0 0 18px rgba(201,168,76,0.75),0 0 5px rgba(201,168,76,0.5);transition:left 0.45s cubic-bezier(.22,1,.36,1),width 0.45s cubic-bezier(.22,1,.36,1);pointer-events:none}
+  .cat-btn{background:transparent;border:none;color:#3e3428;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;padding:16px 22px 15px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;white-space:nowrap;transition:color 0.25s;flex-shrink:0}
+  .cat-btn:hover:not(.active){color:#7a6040}
+  .cat-btn.active{color:var(--gold)}
+  /* ── Stage ── */
+  .menu-stage{max-width:880px;margin:0 auto;perspective:1600px;position:relative;z-index:1}
+  .menu-section{display:none}
+  .menu-section.visible{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .menu-grid{} /* kept for mobile compat */
+  /* ── Card ── */
+  .menu-item:last-child:nth-child(odd){grid-column:1/-1;max-width:450px;width:100%;margin:0 auto}
+  .menu-item{background:linear-gradient(158deg,rgba(26,19,11,0.98) 0%,rgba(11,8,5,0.99) 100%);border:1px solid rgba(201,168,76,0.1);padding:28px 26px 26px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform;cursor:default;box-shadow:0 2px 6px rgba(0,0,0,0.5),0 10px 32px rgba(0,0,0,0.38),inset 0 1px 0 rgba(255,255,255,0.022);transition:transform 0.4s cubic-bezier(.22,1,.36,1),box-shadow 0.4s ease,border-color 0.35s ease}
+  .menu-item::before{content:'';position:absolute;bottom:0;left:0;height:1px;width:0;background:linear-gradient(90deg,transparent,var(--gold),transparent);transition:width 0.65s cubic-bezier(.22,1,.36,1);box-shadow:0 0 8px rgba(201,168,76,0.4);z-index:1}
+  .menu-item::after{content:'';position:absolute;top:-70px;right:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.09) 0%,transparent 70%);opacity:0;transition:opacity 0.45s;pointer-events:none}
   .menu-item:hover::before{width:100%}
   .menu-item:hover::after{opacity:1}
-  .menu-item:hover{box-shadow:0 18px 42px rgba(0,0,0,.55),0 0 0 1px rgba(201,168,76,.22);border-color:rgba(201,168,76,.22)}
-  .menu-name{font-size:14px;font-family:'Playfair Display',serif;color:#e8dfc8;font-weight:400;margin-bottom:7px;letter-spacing:.3px;line-height:1.3}
-  .menu-desc{font-size:11px;color:#4e4438;line-height:1.65}
-  .menu-price{font-family:'Playfair Display',serif;font-size:17px;color:var(--gold);white-space:nowrap;flex-shrink:0;padding-top:1px;letter-spacing:.5px}
-  @keyframes cardIn{from{opacity:0;transform:perspective(900px) rotateX(14deg) translateY(28px)}to{opacity:1;transform:none}}
-  .menu-item.card-in{animation:cardIn .5s cubic-bezier(.22,1,.36,1) both}
+  .menu-item:hover{border-color:rgba(201,168,76,0.28);box-shadow:0 24px 64px rgba(0,0,0,0.65),0 8px 20px rgba(0,0,0,0.4),0 0 0 1px rgba(201,168,76,0.14),inset 0 1px 0 rgba(255,255,255,0.04)}
+  .menu-name{font-family:'Playfair Display',serif;font-size:15px;color:#ede3ce;font-weight:400;margin-bottom:8px;letter-spacing:0.3px;line-height:1.3}
+  .menu-desc{font-size:11px;color:#3c3228;line-height:1.75}
+  .menu-price{font-family:'Playfair Display',serif;font-size:19px;color:var(--gold);white-space:nowrap;flex-shrink:0;padding-top:1px;letter-spacing:0.5px;opacity:0.92}
+  @keyframes serveCard{from{opacity:0;transform:perspective(1200px) rotateX(22deg) translateY(40px) scale(0.94);filter:blur(1.5px)}to{opacity:1;transform:none;filter:none}}
+  .menu-item.serving{animation:serveCard 0.65s cubic-bezier(.22,1,.36,1) both}
 
   /* REVIEWS */
   .reviews{background:#0f0f0f;padding:56px 28px;border-bottom:1px solid rgba(201,168,76,0.12)}
@@ -260,7 +270,8 @@
     .feat-card{flex:1 1 33%;min-width:33%}
     .feat-card+.feat-card::before{display:none}
     .about-inner,.contact-inner{grid-template-columns:1fr}
-    .menu-grid,.reviews-grid{grid-template-columns:1fr}
+    .menu-section.visible,.reviews-grid{grid-template-columns:1fr}
+    .menu-item:last-child:nth-child(odd){max-width:100%}
     .nav-links{display:none}
     .res-form{grid-template-columns:1fr}
     .res-form .full{grid-column:1}
@@ -395,20 +406,26 @@
 
 <!-- MENU -->
 <section class="menu-sec" id="menu">
+  <div class="menu-spotlight" id="menuSpotlight"></div>
   <div class="sec-header reveal">
     <span class="sec-label" data-i18n="menu.label">Explore</span>
     <h2 class="serif" data-i18n="menu.h2">Our Menu</h2>
+    <p class="menu-tagline">Crafted daily &nbsp;·&nbsp; Served with care</p>
   </div>
-  <div class="menu-cats" id="cats">
-    <button class="cat-btn active" data-cat="breakfast" data-i18n="menu.cat.breakfast">Breakfast</button>
-    <button class="cat-btn" data-cat="sandwiches" data-i18n="menu.cat.sandwiches">Sandwiches</button>
-    <button class="cat-btn" data-cat="appetizers" data-i18n="menu.cat.appetizers">Appetizers</button>
-    <button class="cat-btn" data-cat="pasta" data-i18n="menu.cat.pasta">Pasta</button>
-    <button class="cat-btn" data-cat="mains" data-i18n="menu.cat.mains">Mains</button>
-    <button class="cat-btn" data-cat="pizza" data-i18n="menu.cat.pizza">Pizza</button>
-    <button class="cat-btn" data-cat="burgers" data-i18n="menu.cat.burgers">Burgers</button>
-    <button class="cat-btn" data-cat="desserts" data-i18n="menu.cat.desserts">Desserts</button>
+  <div class="menu-nav" id="cats">
+    <div class="menu-nav-track">
+      <div class="menu-nav-indicator" id="catIndicator"></div>
+      <button class="cat-btn active" data-cat="breakfast" data-i18n="menu.cat.breakfast">Breakfast</button>
+      <button class="cat-btn" data-cat="sandwiches" data-i18n="menu.cat.sandwiches">Sandwiches</button>
+      <button class="cat-btn" data-cat="appetizers" data-i18n="menu.cat.appetizers">Appetizers</button>
+      <button class="cat-btn" data-cat="pasta" data-i18n="menu.cat.pasta">Pasta</button>
+      <button class="cat-btn" data-cat="mains" data-i18n="menu.cat.mains">Mains</button>
+      <button class="cat-btn" data-cat="pizza" data-i18n="menu.cat.pizza">Pizza</button>
+      <button class="cat-btn" data-cat="burgers" data-i18n="menu.cat.burgers">Burgers</button>
+      <button class="cat-btn" data-cat="desserts" data-i18n="menu.cat.desserts">Desserts</button>
+    </div>
   </div>
+  <div class="menu-stage">
 
   <!-- BREAKFAST -->
   <div id="breakfast" class="menu-section menu-grid visible">
@@ -488,6 +505,8 @@
     <div class="menu-item"><div><div class="menu-name" data-i18n="m.d5.name">Chocolate Dumplings</div><div class="menu-desc" data-i18n="m.d5.desc">Warm chocolate-filled dumplings</div></div><div class="menu-price">590</div></div>
     <div class="menu-item"><div><div class="menu-name" data-i18n="m.d6.name">Pistachio Balls</div><div class="menu-desc" data-i18n="m.d6.desc">Bite-size pistachio confections</div></div><div class="menu-price">570</div></div>
   </div>
+
+  </div><!-- /menu-stage -->
 </section>
 
 <!-- REVIEWS -->
@@ -1116,75 +1135,102 @@ function setLang(lang) {
   applyTranslations(lang);
 }
 
-// ── Menu Category Tabs ─────────────────────────────────────────────────────────
-document.getElementById('cats').addEventListener('click', function(e) {
-  var btn = e.target.closest('.cat-btn');
-  if (!btn) return;
-  document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  var cat = btn.dataset.cat;
-  document.querySelectorAll('.menu-section').forEach(function(s) {
-    s.classList.toggle('visible', s.id === cat);
-  });
-  // Stagger card-in animation on newly visible items
-  var section = document.getElementById(cat);
-  if (section) {
+// ── Menu Premium Experience ────────────────────────────────────────────────────
+(function() {
+  var track = document.querySelector('.menu-nav-track');
+  var indicator = document.getElementById('catIndicator');
+
+  function moveIndicator(btn) {
+    if (!indicator || !track || !btn) return;
+    var bRect = btn.getBoundingClientRect();
+    var tRect = track.getBoundingClientRect();
+    indicator.style.left = (bRect.left - tRect.left + track.scrollLeft) + 'px';
+    indicator.style.width = bRect.width + 'px';
+  }
+
+  function serveSection(catId) {
+    var section = document.getElementById(catId);
+    if (!section) return;
     var items = section.querySelectorAll('.menu-item');
-    items.forEach(function(item) { item.classList.remove('card-in'); });
+    items.forEach(function(item) { item.classList.remove('serving'); void item.offsetWidth; });
     requestAnimationFrame(function() {
       items.forEach(function(item, i) {
-        setTimeout(function() { item.classList.add('card-in'); }, i * 55);
+        setTimeout(function() { item.classList.add('serving'); }, i * 62);
       });
     });
   }
-});
 
-// ── Menu Item 3D Tilt ─────────────────────────────────────────────────────────
-document.querySelectorAll('.menu-item').forEach(function(item) {
-  item.addEventListener('mousemove', function(e) {
-    var r = item.getBoundingClientRect();
-    var rotY = ((e.clientX - r.left) / r.width  - 0.5) * 10;
-    var rotX = ((e.clientY - r.top)  / r.height - 0.5) * -6;
-    item.style.transform = 'perspective(700px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-4px)';
-  });
-  item.addEventListener('mouseleave', function() {
-    item.style.transition = 'transform .5s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .3s';
-    item.style.transform = '';
-    setTimeout(function() { item.style.transition = ''; }, 500);
-  });
-  item.addEventListener('mouseenter', function() {
-    item.style.transition = 'transform .12s ease, box-shadow .35s, border-color .3s';
-  });
-});
-
-// ── Reservation Button ─────────────────────────────────────────────────────────
-document.getElementById('res-btn').addEventListener('click', function() {
-  var btn = this;
-  var form = btn.closest('.res-form');
-  var inputs = form.querySelectorAll('input[required], select[required]');
-  var valid = true;
-  inputs.forEach(function(inp) { if (!inp.value.trim()) { inp.style.borderColor='rgba(200,60,60,.6)'; valid = false; } else { inp.style.borderColor=''; } });
-  if (!valid) return;
-  btn.disabled = true;
-  btn.textContent = T[currentLang]['res.btn.sent'];
-  var success = document.getElementById('res-success');
-  if (success) { success.textContent = T[currentLang]['res.success']; success.style.display = 'block'; }
-  setTimeout(function() {
-    btn.disabled = false;
-    btn.textContent = T[currentLang]['res.btn'];
-    if (success) success.style.display = 'none';
-  }, 5000);
-});
-
-// Animate default visible menu items on load
-(function() {
-  var defaultSection = document.querySelector('.menu-section.visible');
-  if (defaultSection) {
-    defaultSection.querySelectorAll('.menu-item').forEach(function(item, i) {
-      setTimeout(function() { item.classList.add('card-in'); }, 200 + i * 55);
+  document.getElementById('cats').addEventListener('click', function(e) {
+    var btn = e.target.closest('.cat-btn');
+    if (!btn) return;
+    document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    moveIndicator(btn);
+    var cat = btn.dataset.cat;
+    document.querySelectorAll('.menu-section').forEach(function(s) {
+      s.classList.toggle('visible', s.id === cat);
     });
+    serveSection(cat);
+  });
+
+  requestAnimationFrame(function() {
+    var activeBtn = document.querySelector('.cat-btn.active');
+    if (activeBtn) moveIndicator(activeBtn);
+  });
+
+  var defaultSec = document.querySelector('.menu-section.visible');
+  if (defaultSec) {
+    var menuIO = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        serveSection(defaultSec.id);
+        menuIO.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    menuIO.observe(defaultSec);
   }
 })();
+
+// ── Menu Card 3D Tilt ─────────────────────────────────────────────────────────
+(function() {
+  document.querySelectorAll('.menu-item').forEach(function(item) {
+    item.addEventListener('mousemove', function(e) {
+      var r = item.getBoundingClientRect();
+      var rotY = ((e.clientX - r.left) / r.width  - 0.5) * 11;
+      var rotX = ((e.clientY - r.top)  / r.height - 0.5) * -7;
+      item.style.transform = 'perspective(850px) rotateX('+rotX+'deg) rotateY('+rotY+'deg) translateY(-5px) translateZ(8px)';
+    });
+    item.addEventListener('mouseleave', function() {
+      item.style.transition = 'transform 0.6s cubic-bezier(.22,1,.36,1),box-shadow 0.4s,border-color 0.35s';
+      item.style.transform = '';
+      setTimeout(function() { item.style.transition = ''; }, 620);
+    });
+    item.addEventListener('mouseenter', function() {
+      item.style.transition = 'transform 0.1s ease,box-shadow 0.4s,border-color 0.35s';
+    });
+  });
+})();
+
+// ── Menu Cursor Spotlight ─────────────────────────────────────────────────────
+(function() {
+  var sec = document.getElementById('menu');
+  var spot = document.getElementById('menuSpotlight');
+  if (!sec || !spot) return;
+  var raf;
+  sec.addEventListener('mousemove', function(e) {
+    var r = sec.getBoundingClientRect();
+    var px = e.clientX - r.left - 360;
+    var py = e.clientY - r.top  - 360;
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(function() {
+      spot.style.transform = 'translate('+px+'px,'+py+'px)';
+    });
+  });
+  sec.addEventListener('mouseleave', function() {
+    spot.style.transform = 'translate(-9999px,-9999px)';
+  });
+})();
+
 
 // ── Scroll Reveal (IntersectionObserver) ───────────────────────────────────────
 (function() {
